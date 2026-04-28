@@ -237,59 +237,51 @@
 </footer>
 
 <script>
-    function toggleChat() {
-        const chat = document.getElementById('chat-window');
-        chat.style.display = (chat.style.display === 'flex') ? 'none' : 'flex';
-    }
-
-    function sendMessage() {
+function sendMessage() {
         const input = document.getElementById('user-input');
         const text = input.value;
         if (!text) return;
+
         addLog(text, 'user');
         input.value = '';
 
         setTimeout(() => {
-            let reply = "和護の杜は、常に『日本らしさ』を追い求めているのですよ。";
-            
-            if (text.includes("経常桜")) {
-                reply = "経常桜（けいじょうざくら）は、一年中きれいな花びらが散る美しい桜です。和護の杜の技術の結晶なんですよ。";
+            let reply = "";
+
+            // 1. 文字数制限のチェック（例：30文字を超える場合はキーワード判定を行わない）
+            if (text.length > 30) {
+                reply = "サクヤ姫：お伝えしたいことがたくさんあるのですね。ですが、私、一度にたくさんお話しされると少し混乱してしまって…。もう少し短くまとめていただけますか？";
+            } 
+            // 2. キーワード判定（30文字以内の場合のみ実行）
+            else if (text.includes("経常桜")) {
+                reply = "サクヤ姫：経常桜（けいじょうざくら）は、一年中きれいな花びらが散る美しい桜です。和護の杜の技術の結晶なんですよ。";
             } else if (text.includes("音楽体験システム")) {
-                reply = "音というのは空気の振動です。ですが、和護の杜が開発した聴神経変調技術は違います。聴取者の蝸牛神経に直接作用するんです。伝統的な音楽を直接脳内にお届けできる、画期的な技術なんです。";
+                reply = "サクヤ姫：音というのは空気の振動です。ですが、和護の杜が開発した技術は違います。聴く方の神経に直接作用し、これまでにない没入感を提供できるのです。";
             } else if (text.includes("保護技術")) {
-                reply = "和護の杜が開発した分子配列固定技術はその名の通り、分子の配列を記憶させ、保存することができます。これにより、劣化することなく永久的に保存することができるようになりました。";
+                reply = "サクヤ姫：私たちの技術は、分子の配列を固定し、記憶させることができます。これにより、日本の宝を劣化させることなく、永久に保存できるようになったのです。";
+            } else {
+                // キーワードが含まれない、または短文での通常応答
+                reply = "サクヤ姫：和護の杜は、常に『日本らしさ』を追い求めているのですよ。";
             }
             
             addLog(reply, 'sakuyahime');
         }, 1000);
     }
 
+    // --- 以下の addLog などの補助関数は変更なし ---
     function addLog(text, sender) {
         const logs = document.getElementById('chat-logs');
         const div = document.createElement('div');
         div.className = sender === 'sakuyahime' ? 'msg-sakuyahime' : 'msg-user';
-        div.innerText = (sender === 'sakuyahime' ? 'サクヤ姫：' : '') + text;
+        const prefix = (sender === 'sakuyahime' && !text.startsWith('サクヤ姫：')) ? 'サクヤ姫：' : '';
+        div.innerText = prefix + text;
         logs.appendChild(div);
         logs.scrollTop = logs.scrollHeight;
     }
 
-    function executeSearch() {
-        const val = document.getElementById('site-search').value;
-        if (val) { window.location.href = `search.html?q=${encodeURIComponent(val)}`; }
-    }
-
-    // 検索入力欄でエンターキーを押した時にexecuteSearchを実行する
-    document.getElementById('site-search').addEventListener('keypress', function (e) {
-        if (e.key === 'Enter') {
-            executeSearch();
-        }
-    });
-
-    // サクヤ姫のチャット入力欄でもエンターキーで送信できるように追加
+    // エンターキー送信対応
     document.getElementById('user-input').addEventListener('keypress', function (e) {
-        if (e.key === 'Enter') {
-            sendMessage();
-        }
+        if (e.key === 'Enter') { sendMessage(); }
     });
 </script>
 
