@@ -277,30 +277,63 @@
 </footer>
 
 <script>
-    // チャット開閉
+    // チャットウィンドウの開閉
     function toggleChat() {
         const chat = document.getElementById('chat-window');
-        chat.style.display = (chat.style.display === 'flex') ? 'none' : 'flex';
+        if (chat.style.display === 'none' || chat.style.display === '') {
+            chat.style.display = 'flex';
+        } else {
+            chat.style.display = 'none';
+        }
     }
+
+    // ★追加機能：ウィンドウ外をクリックしたら閉じる（履歴保持）
+    document.addEventListener('click', function(e) {
+        const chatWindow = document.getElementById('chat-window');
+        const sakuyaContainer = document.getElementById('sakuyahime-container');
+
+        if (chatWindow.style.display === 'flex') {
+            // ウィンドウ本体でも、サクヤ姫アイコンでもない場所をクリックした場合
+            if (!chatWindow.contains(e.target) && !sakuyaContainer.contains(e.target)) {
+                chatWindow.style.display = 'none';
+            }
+        }
+    });
 
     // メッセージ送信
     function sendMessage() {
         const input = document.getElementById('user-input');
         const text = input.value;
         if (!text) return;
+
         addLog(text, 'user');
         input.value = '';
+
         setTimeout(() => {
-            const reply = "和護の杜にお越しいただき、ありがとうございます。";
+            let reply = "";
+
+            // ★追加機能：文字数制限のチェック（30文字超はガード）
+            if (text.length > 30) {
+                reply = "お伝えしたいことがたくさんあるのですね。ですが、私、一度にたくさんお話しされると少し混乱してしまって…。もう少し短くまとめていただけますか？";
+            } else {
+                // 元のセリフ内容を維持
+                reply = "和護の杜にお越しいただき、ありがとうございます。";
+            }
+            
             addLog(reply, 'sakuyahime');
         }, 1000);
     }
 
+    // ログの追加（テキストを選択・クリック可能に）
     function addLog(text, sender) {
         const logs = document.getElementById('chat-logs');
         const div = document.createElement('div');
         div.className = sender === 'sakuyahime' ? 'msg-sakuyahime' : 'msg-user';
-        if (sender === 'sakuyahime') { div.innerText = 'サクヤ姫：' + text; } else { div.innerText = text; }
+        
+        // プレフィックス処理
+        const prefix = (sender === 'sakuyahime' && !text.startsWith('サクヤ姫：')) ? 'サクヤ姫：' : '';
+        div.innerText = prefix + text;
+        
         logs.appendChild(div);
         logs.scrollTop = logs.scrollHeight;
     }
@@ -313,10 +346,17 @@
         }
     }
 
-    // 検索窓エンターキー対応
+    // 検索窓でのエンターキー対応
     document.getElementById('site-search').addEventListener('keypress', function (e) {
         if (e.key === 'Enter') {
             executeSearch();
+        }
+    });
+
+    // ★追加機能：チャット入力欄でのエンターキー送信対応
+    document.getElementById('user-input').addEventListener('keypress', function (e) {
+        if (e.key === 'Enter') {
+            sendMessage();
         }
     });
 </script>

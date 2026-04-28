@@ -200,52 +200,87 @@
 </footer>
 
 <script>
+    // 検索実行関数
     function executeSearch() {
         const val = document.getElementById('site-search').value;
         if (val) window.location.href = `search.html?q=${encodeURIComponent(val)}`;
     }
     
+    // 検索窓でのエンターキー対応
     document.getElementById('site-search').addEventListener('keypress', function (e) {
         if (e.key === 'Enter') executeSearch();
     });
 
+    // チャットウィンドウの開閉
     function toggleChat() {
         const chat = document.getElementById('chat-window');
-        chat.style.display = (chat.style.display === 'flex') ? 'none' : 'flex';
+        if (chat.style.display === 'none' || chat.style.display === '') {
+            chat.style.display = 'flex';
+        } else {
+            chat.style.display = 'none';
+        }
     }
 
+    // ★追加機能：ウィンドウ外をクリックしたら閉じる（履歴保持）
+    document.addEventListener('click', function(e) {
+        const chatWindow = document.getElementById('chat-window');
+        const sakuyaContainer = document.getElementById('sakuyahime-container');
+
+        if (chatWindow && chatWindow.style.display === 'flex') {
+            // ウィンドウ本体でも、サクヤ姫アイコンでもない場所をクリックした場合
+            if (!chatWindow.contains(e.target) && !sakuyaContainer.contains(e.target)) {
+                chatWindow.style.display = 'none';
+            }
+        }
+    });
+
+    // メッセージ送信
     function sendMessage() {
         const input = document.getElementById('user-input');
         const text = input.value;
         if (!text) return;
+
         addLog(text, 'user');
         input.value = '';
 
         setTimeout(() => {
             let reply = "";
-            if (text.includes("和の心")) {
-                reply = "和の心とは、美しい日本に住む日本人なら誰しもが持つもてなしの心です。美しい日本には、美しい日本人も必要でしょう？";
-            }
-            else if (text.includes("源流") || text.includes("理論") || text.includes("生体情報の保存")) {
-                reply = "この技術には、有機物定常凍結理論が用いられています。過去からの積み重ねで今がある…歴史ある日本と通じる所があるように思いませんか？";
-            } 
-            else {
-                const replies = ["美しいものの、最も美しい瞬間を”保存”する…まるで写真のようですが、私たちの眼の前に、確かに存在するのです。"];
-                reply = replies[Math.floor(Math.random() * replies.length)];
+
+            // ★追加機能：文字数制限のチェック（30文字超はガード）
+            if (text.length > 30) {
+                reply = "お伝えしたいことがたくさんあるのですね。ですが、私、一度にたくさんお話しされると少し混乱してしまって…。もう少し短くまとめていただけますか？";
+            } else {
+                // 元のロジックを維持
+                if (text.includes("和の心")) {
+                    reply = "和の心とは、美しい日本に住む日本人なら誰しもが持つもてなしの心です。美しい日本には、美しい日本人も必要でしょう？";
+                }
+                else if (text.includes("源流") || text.includes("理論") || text.includes("生体情報の保存")) {
+                    reply = "この技術には、有機物定常凍結理論が用いられています。過去からの積み重ねで今がある…歴史ある日本と通じる所があるように思いませんか？";
+                } 
+                else {
+                    const replies = ["美しいものの、最も美しい瞬間を”保存”する…まるで写真のようですが、私たちの眼の前に、確かに存在するのです。"];
+                    reply = replies[Math.floor(Math.random() * replies.length)];
+                }
             }
             addLog(reply, 'sakuyahime');
         }, 1200);
     }
 
+    // チャット入力欄でのエンターキー送信対応
     document.getElementById('user-input').addEventListener('keypress', function (e) {
         if (e.key === 'Enter') sendMessage();
     });
 
+    // ログの追加（innerTextを使用し、テキストを選択・コピー可能に）
     function addLog(text, sender) {
         const logs = document.getElementById('chat-logs');
         const div = document.createElement('div');
         div.className = sender === 'sakuyahime' ? 'msg-sakuyahime' : 'msg-user';
-        div.innerText = (sender === 'sakuyahime' ? 'サクヤ姫：' : '') + text;
+        
+        // プレフィックス処理（二重付与を防止）
+        const prefix = (sender === 'sakuyahime' && !text.startsWith('サクヤ姫：')) ? 'サクヤ姫：' : '';
+        div.innerText = prefix + text;
+        
         logs.appendChild(div);
         logs.scrollTop = logs.scrollHeight;
     }
