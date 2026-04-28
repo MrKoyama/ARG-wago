@@ -1,0 +1,201 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>個人ログ：東條宗一 - 和護の杜</title>
+    <style>
+        :root {
+            --glitch-bg: #080a08;
+            --glitch-gold: #b08d2d; 
+            --glitch-text: #c0ccc0; 
+            --glitch-green: #2a4d2a;
+            --accent-red: #cc3333;
+            --document-bg: #121612;
+        }
+
+        body {
+            background-color: var(--glitch-bg);
+            background-image: radial-gradient(circle, #151a15 1px, transparent 1px);
+            background-size: 40px 40px;
+            color: var(--glitch-text);
+            font-family: "Sawarabi Mincho", "Hiragino Mincho ProN", serif;
+            margin: 0;
+            padding: 0;
+            line-height: 2.2;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+        }
+
+        main {
+            flex: 1;
+            padding: 80px 20px;
+            display: flex;
+            justify-content: center;
+        }
+
+        .log-area {
+            max-width: 800px;
+            width: 100%;
+            background-color: var(--document-bg);
+            border: 1px solid #2a332a;
+            padding: 60px;
+            box-shadow: 0 10px 40px rgba(0,0,0,0.7);
+        }
+
+        .log-header {
+            font-family: monospace;
+            font-size: 0.85rem;
+            color: #5a7a5a;
+            border-bottom: 1px solid #3d523d;
+            margin-bottom: 40px;
+            padding-bottom: 10px;
+            display: flex;
+            justify-content: space-between;
+        }
+
+        .entry {
+            margin-bottom: 50px;
+            padding-bottom: 30px;
+            border-bottom: 1px dotted rgba(61, 82, 61, 0.2);
+        }
+
+        .timestamp {
+            display: block;
+            font-family: monospace;
+            font-size: 0.9rem;
+            color: var(--glitch-gold);
+            margin-bottom: 15px;
+        }
+
+        .content {
+            font-size: 1rem;
+            text-align: justify;
+            color: var(--glitch-text);
+        }
+
+        .highlight { color: var(--accent-red); font-weight: bold; }
+
+        .footer-action {
+            margin-top: 60px;
+            text-align: center;
+            border-top: 1px solid #3d523d;
+            padding-top: 40px;
+        }
+
+        .complete-btn {
+            padding: 12px 50px;
+            background: var(--glitch-green);
+            color: #fff;
+            border: 1px solid var(--glitch-gold);
+            cursor: pointer;
+            font-family: "Sawarabi Mincho", serif;
+            letter-spacing: 0.5rem;
+            transition: 0.3s;
+            font-size: 1rem;
+        }
+        .complete-btn:hover {
+            background-color: var(--glitch-gold);
+            color: #000;
+        }
+
+        footer {
+            background-color: #000;
+            color: #b0c0b0;
+            padding: 20px 50px;
+            font-size: 0.8rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border-top: 3px solid var(--glitch-gold);
+            margin-top: auto;
+        }
+        .footer-left { flex: 1; }
+        .footer-right { font-family: monospace; letter-spacing: 1px; }
+
+    </style>
+</head>
+<body>
+
+<main>
+    <div class="log-area">
+        <div class="log-header">
+            <span>ID: TOJO_S // SYSTEM_CORE_LOG</span>
+            <span>PHASE: FINAL_CONVERGENCE</span>
+        </div>
+
+        <div id="log-container">
+            </div>
+
+        <div class="footer-action">
+            <button class="complete-btn" onclick="finish()">調査完了</button>
+        </div>
+    </div>
+</main>
+
+<footer>
+    <div class="footer-left">
+        このサイトの内容はフィクションです。登場する人物・団体・名称等は架空であり、実在のものとは関係ありません。
+    </div>
+    <div class="footer-right">
+        &lt; 28/28 &gt; (Lv.8)
+    </div>
+</footer>
+
+<script>
+    const logs = [
+        { text: "「千五百秋式因果固定礎」の基本定義を完了。高次エネルギー体の収束属性を物理定数へ変換するアルゴリズムを固定。三ヶ月後、日本は最初の『静止』を迎える。" },
+        { text: "歴史とは腐敗の過程に過ぎない。美しき瞬間のまま、なぜ止まろうとしないのか。私はこの国を、完成された標本として永遠に残す義務がある。" },
+        { text: "天照大神式発電施設の出力を115%へ。発生する時空の歪みを「礎」が即座に吸収・中和。この相補的運用こそが、和護の杜が目指す永久機関の完成形である。" },
+        { text: "外の世界は相変わらず不潔な変化を繰り返している。だが、この障壁の向こう側だけは違う。私たちが管理する清浄な静寂こそ、人類が最後に到達すべき福音だ。" },
+        { text: "日本全土の重要地殻構造を因果レベルでロック。経年劣化、自然災害、外部干渉による物理損壊を理論上0に封殺。日本は『不変』の物理的実体へと変貌した。" },
+        { text: "一部の反対派は「停滞」を恐れるが、それは無知ゆえの恐怖だ。変化がなければ苦しみもない。衰退という名の死を回避するには、生そのものを停止させるしかないのだ。" },
+        { text: "天照と磐長の同期率が90%を超えた。もはや物理的なスイッチによる停止は不可能。システムは自律的に『永遠の今』を生成し続ける。修正の余地はない。" },
+        { text: "いよいよだ。余計な情報はすべて削ぎ落とし、純粋な『日本』という概念だけを時の中に閉じ込める。綻びのない、完璧な閉鎖世界の誕生。" },
+        { text: "「礎」の定着率99.8%。出力平衡。天照の熱量は完全に磐長の静寂に呑み込まれた。物理現象としての歴史は、数分後に終了する。" },
+        { text: "カウントダウンは終わった。間もなく、すべてが溶け合い、静止した美しさの中へ堕ちる。日本は、ようやく永遠に<span class='highlight'>完成</span>する。" }
+    ];
+
+    function formatTime(date) {
+        const y = date.getFullYear();
+        const m = String(date.getMonth() + 1).padStart(2, '0');
+        const d = String(date.getDate()).padStart(2, '0');
+        const hh = String(date.getHours()).padStart(2, '0');
+        const min = String(date.getMinutes()).padStart(2, '0');
+        return `${y}.${m}.${d} ${hh}:${min}`;
+    }
+
+    window.onload = function() {
+        const container = document.getElementById('log-container');
+        const now = new Date();
+        
+        const html = logs.map((log, index) => {
+            const entryDate = new Date(now);
+            // 90日前(index 0)から現在(index 9)に向けて日付を進める
+            const daysAgo = (9 - index) * 10;
+            entryDate.setDate(now.getDate() - daysAgo);
+            
+            // 最新ログ以外はランダムな時間に固定
+            if (index < 9) {
+                entryDate.setHours(Math.floor(Math.random() * 24), Math.floor(Math.random() * 60));
+            }
+
+            return `
+                <div class="entry">
+                    <span class="timestamp">${formatTime(entryDate)}</span>
+                    <div class="content">${log.text}</div>
+                </div>
+            `;
+        }).join('');
+
+        container.innerHTML = html;
+    };
+
+    function finish() {
+        window.location.href = 'clear.html';
+    }
+</script>
+
+</body>
+</html>

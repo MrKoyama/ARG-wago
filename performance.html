@@ -1,0 +1,297 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>活動実績 - 和護の杜 公式サイト</title>
+    <style>
+        :root {
+            --washi-bg: #fdfaf5;
+            --ink-black: #2c2c2c;
+            --sakura-pink: #ffb7c5;
+            --accent-gold: #d4af37;
+            --deep-forest: #1b3022;
+            --accent-red: #cc3333;
+        }
+
+        body {
+            background-color: var(--washi-bg);
+            background-image: url('data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSI4MCIgaGVpZ2h0PSI4MCIgdmlld0JveD0iMCAwIDgwIDgwIj48ZyBmaWxsPSIjZmZiN2M1IiBmaWxsLW9wYWNpdHk9IjAuMDUiPjxwYXRoIGQ9Ik0xNS41MzYgMTYuMTM2bC0zLjMzNiAyLjIwMyAxLjMzNiAyLjI5MyAzLjMzNi0yLjIwMy0xLjMzNi0yLjI5M3pNMzAgMTVsLTIgMnY0bDIgMnYtNGwtMi0yek0xNS41MzYgNjMuODY0bC0zLjMzNi0yLjIwMyAxLjMzNi0yLjI5MyAzLjMzNiAyLjIwMy0xLjMzNiAyLjI5M3pNMzAgNjVsLTItMnYtNGwyIDJ2NGwtMi0yek02NC40NjQgNjMuODY0bDQuNDA8LTUuNjI5IDEuMzM2IDIuMjkzLTQuNDA8IDUuNjI5LTEuMzM2LTIuMjkzem03LjUzNi0xNC43NzJsMiAyLTVoLTRsLTItMnYtNGwyIDJ2NE03MS40NjQgMTUuMTM2bDQuNDA8IDUuNjI5IDEuMzM2LTIuMjkzLTQuNDA8LTUuNjI5LTEuMzM2IDIuMjkzem0xMC41MzYgOS4zNjRscs-yLTItMi00djRoMnYyTDUwIDI5Ljg2NGwtNS44NjQgNC44NjQgNS44NjQgNC44NjQgOC44NjQtNi44NjQgOC44NjQgNi44NjQgNS44NjQtNC44NjR6Ii8+PC9nPjwvc3ZnPg==');
+            color: var(--ink-black);
+            font-family: "Sawarabi Mincho", "Hiragino Mincho ProN", serif;
+            margin: 0;
+            padding: 0;
+            line-height: 2.2;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            overflow-x: hidden;
+        }
+
+        .phrase { display: inline-block; vertical-align: top; }
+
+        header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 20px 50px;
+            background-color: rgba(253, 250, 245, 0.95);
+            border-bottom: 2px solid var(--accent-gold);
+            position: sticky;
+            top: 0;
+            z-index: 999;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+        }
+        .logo-container { display: flex; align-items: center; gap: 15px; text-decoration: none; color: var(--ink-black); }
+        .logo-mark { font-size: 2.5rem; line-height: 1; color: var(--accent-red); }
+        .logo-text { display: flex; flex-direction: column; border-left: 1px solid var(--accent-gold); padding-left: 15px; }
+        .logo-main { font-size: 1.8rem; font-weight: bold; letter-spacing: 0.4rem; color: var(--deep-forest); }
+        .logo-sub { font-size: 0.75rem; letter-spacing: 0.15rem; color: var(--accent-gold); font-weight: bold; }
+
+        nav { display: flex; gap: 20px; }
+        .nav-btn {
+            padding: 8px 18px;
+            border: 1px solid var(--accent-gold);
+            background: none;
+            cursor: pointer;
+            text-decoration: none;
+            color: var(--ink-black);
+            font-size: 0.95rem;
+            transition: 0.3s;
+            border-radius: 4px;
+            white-space: nowrap;
+        }
+        .nav-btn:hover { background-color: var(--accent-gold); color: white; }
+
+        .header-search-container { display: flex; align-items: center; gap: 10px; }
+        #site-search { padding: 8px 15px; width: 200px; border: 1px solid var(--accent-gold); background: rgba(255,255,255,0.7); }
+
+        main { flex: 1; }
+        .page-title-area {
+            background: var(--deep-forest);
+            color: white;
+            padding: 60px 20px;
+            text-align: center;
+        }
+        .page-title-area h1 { font-size: 2.2rem; letter-spacing: 0.5rem; margin: 0; }
+
+        .container {
+            max-width: 900px;
+            margin: 60px auto;
+            padding: 0 40px;
+        }
+
+        .performance-item {
+            background: white;
+            border: 1px solid #eee;
+            padding: 40px;
+            display: grid;
+            grid-template-columns: 180px 1fr;
+            gap: 30px;
+            position: relative;
+            margin-bottom: 40px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.02);
+        }
+        
+        .performance-item::before {
+            content: ""; position: absolute; top: 0; left: 0; width: 4px; height: 100%; background: var(--accent-gold);
+        }
+
+        .item-meta {
+            text-align: right;
+            border-right: 1px solid #eee;
+            padding-right: 30px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+        }
+        .item-category { color: var(--accent-red); font-size: 1.1rem; font-weight: bold; letter-spacing: 2px; }
+
+        .item-content h2 {
+            font-size: 1.6rem;
+            color: var(--deep-forest);
+            margin: 0 0 20px 0;
+            border: none;
+            padding: 0;
+            font-weight: bold;
+        }
+
+        footer {
+            background-color: var(--deep-forest);
+            color: rgba(255, 255, 255, 0.7);
+            padding: 20px 50px;
+            font-size: 0.8rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border-top: 3px solid var(--accent-gold);
+            margin-top: auto;
+        }
+        .footer-left { flex: 1; }
+        .footer-right { font-family: monospace; letter-spacing: 1px; }
+
+        #sakuyahime-container { position: fixed; bottom: 80px; right: 20px; z-index: 1000; cursor: pointer; }
+        #sakuyahime-img { width: 160px; height: auto; transition: transform 0.3s ease; }
+        #sakuyahime-img:hover { transform: scale(1.05); }
+
+        #chat-window {
+            position: fixed; bottom: 250px; right: 30px; width: 340px; height: 450px;
+            background: rgba(255, 255, 255, 0.98); border: 2px solid var(--deep-forest);
+            box-shadow: 0 10px 30px rgba(0,0,0,0.2); display: none; flex-direction: column; z-index: 1001;
+        }
+        .chat-header { background: var(--deep-forest); color: var(--accent-gold); padding: 12px; font-weight: bold; display: flex; justify-content: space-between; }
+        #chat-logs { flex: 1; overflow-y: auto; padding: 20px; font-size: 0.95rem; display: flex; flex-direction: column; gap: 15px; }
+        .msg-sakuyahime { align-self: flex-start; background: #f0f4f1; padding: 10px 15px; border-left: 4px solid var(--sakura-pink); max-width: 85%; color: var(--ink-black); }
+        .msg-user { align-self: flex-end; background: var(--deep-forest); color: white; padding: 10px 15px; max-width: 85%; border-radius: 4px; }
+        .chat-input-area { border-top: 2px solid var(--accent-gold); padding: 15px; display: flex; gap: 10px; }
+        #user-input { flex: 1; padding: 8px; border: 1px solid #ddd; }
+    </style>
+</head>
+<body>
+
+<header>
+    <a href="toppage.html" class="logo-container">
+        <span class="logo-mark">⛩️</span>
+        <div class="logo-text">
+            <span class="logo-main">和護の杜</span>
+            <span class="logo-sub">WAGO-NO-MORI</span>
+        </div>
+    </a>
+    <nav>
+        <a href="about.html" class="nav-btn">和護の杜とは</a>
+        <a href="performance.html" class="nav-btn">活動実績</a>
+        <a href="guidance.html" class="nav-btn">設立者のご指導</a>
+    </nav>
+    <div class="header-search-container">
+        <input type="text" id="site-search" placeholder="サイト内検索…">
+        <button class="nav-btn" onclick="executeSearch()" style="background: var(--deep-forest); color: white; border: none;">検索</button>
+    </div>
+</header>
+
+<main>
+    <div class="page-title-area">
+        <h1>活動実績</h1>
+    </div>
+
+    <div class="container">
+        <article class="performance-item">
+            <div class="item-meta"><span class="item-category">植物管理</span></div>
+            <div class="item-content">
+                <h2>「経常桜」の開発・栽培</h2>
+                <p>
+                    <span class="phrase">和護の杜を象徴する、朽ちることのない桜です。</span><br>
+                    <span class="phrase">私たちは、日本の春を象徴するこの美しい姿を</span>
+                    <span class="phrase">一年中、天候に左右されることなく楽しんでいただけるよう、</span><br>
+                    <span class="phrase">独自の品種改良を施しました。</span>
+                </p>
+            </div>
+        </article>
+
+        <article class="performance-item">
+            <div class="item-meta"><span class="item-category">音響保存</span></div>
+            <div class="item-content">
+                <h2>至高の伝統音楽体験システムの提供</h2>
+                <p>
+                    <span class="phrase">雅楽などの日本の伝統的な音楽を、</span>
+                    <span class="phrase">周囲のノイズに邪魔されることなく</span>
+                    <span class="phrase">純粋に楽しめる環境を構築しました。</span><br>
+                    <span class="phrase">「音を聴く」という体験の質を極限まで高め、</span>
+                    <span class="phrase">これまでにない没入感を提供いたします。</span>
+                </p>
+            </div>
+        </article>
+
+        <article class="performance-item">
+            <div class="item-meta"><span class="item-category">文献保存</span></div>
+            <div class="item-content">
+                <h2>特殊保護技術による「文献の永久保存」</h2>
+                <p>
+                    <span class="phrase">古文書や貴重な資料を、湿気や劣化から完全に守る</span>
+                    <span class="phrase">新しい保護技術を開発しました。</span><br>
+                    <span class="phrase">次世代へ、今と全く同じ状態で「形」を繋ぎ、</span>
+                    <span class="phrase">日本の歴史を永遠に損なわないための挑戦です。</span>
+                </p>
+            </div>
+        </article>
+    </div>
+</main>
+
+<div id="sakuyahime-container" onclick="toggleChat()">
+    <img src="images/sakuya.png" id="sakuyahime-img" alt="サクヤ姫">
+</div>
+
+<div id="chat-window">
+    <div class="chat-header"><span>サクヤ姫との語らい</span><span style="cursor:pointer" onclick="toggleChat()">×</span></div>
+    <div id="chat-logs">
+        <div class="msg-sakuyahime">サクヤ姫：ようこそ「和護の杜」へ。私たちの活動について、何か気になることはありますか？</div>
+    </div>
+    <div class="chat-input-area">
+        <input type="text" id="user-input" placeholder="言葉を掛ける...">
+        <button class="nav-btn" onclick="sendMessage()" style="background: var(--deep-forest); color: white;">送信</button>
+    </div>
+</div>
+
+<footer>
+    <div class="footer-left">このサイトの内容はフィクションです。登場する人物・団体・名称等は架空であり、実在のものとは関係ありません。</div>
+    <div class="footer-right">&lt; 3/28 &gt; (Lv.0)</div>
+</footer>
+
+<script>
+    function toggleChat() {
+        const chat = document.getElementById('chat-window');
+        chat.style.display = (chat.style.display === 'flex') ? 'none' : 'flex';
+    }
+
+    function sendMessage() {
+        const input = document.getElementById('user-input');
+        const text = input.value;
+        if (!text) return;
+        addLog(text, 'user');
+        input.value = '';
+
+        setTimeout(() => {
+            let reply = "和護の杜は、常に『日本らしさ』を追い求めているのですよ。";
+            
+            if (text.includes("経常桜")) {
+                reply = "経常桜（けいじょうざくら）は、一年中きれいな花びらが散る美しい桜です。和護の杜の技術の結晶なんですよ。";
+            } else if (text.includes("音楽体験システム")) {
+                reply = "音というのは空気の振動です。ですが、和護の杜が開発した聴神経変調技術は違います。聴取者の蝸牛神経に直接作用するんです。伝統的な音楽を直接脳内にお届けできる、画期的な技術なんです。";
+            } else if (text.includes("保護技術")) {
+                reply = "和護の杜が開発した分子配列固定技術はその名の通り、分子の配列を記憶させ、保存することができます。これにより、劣化することなく永久的に保存することができるようになりました。";
+            }
+            
+            addLog(reply, 'sakuyahime');
+        }, 1000);
+    }
+
+    function addLog(text, sender) {
+        const logs = document.getElementById('chat-logs');
+        const div = document.createElement('div');
+        div.className = sender === 'sakuyahime' ? 'msg-sakuyahime' : 'msg-user';
+        div.innerText = (sender === 'sakuyahime' ? 'サクヤ姫：' : '') + text;
+        logs.appendChild(div);
+        logs.scrollTop = logs.scrollHeight;
+    }
+
+    function executeSearch() {
+        const val = document.getElementById('site-search').value;
+        if (val) { window.location.href = `search.html?q=${encodeURIComponent(val)}`; }
+    }
+
+    // 検索入力欄でエンターキーを押した時にexecuteSearchを実行する
+    document.getElementById('site-search').addEventListener('keypress', function (e) {
+        if (e.key === 'Enter') {
+            executeSearch();
+        }
+    });
+
+    // サクヤ姫のチャット入力欄でもエンターキーで送信できるように追加
+    document.getElementById('user-input').addEventListener('keypress', function (e) {
+        if (e.key === 'Enter') {
+            sendMessage();
+        }
+    });
+</script>
+
+</body>
+</html>

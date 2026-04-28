@@ -1,0 +1,241 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>神聖理化学研究所：概要と理念 - 和護の杜</title>
+    <style>
+        :root {
+            --glitch-bg: #080a08;
+            --glitch-gold: #b08d2d; 
+            --glitch-text: #c0ccc0; 
+            --glitch-green: #2a4d2a;
+            --accent-red: #cc3333;
+            --document-bg: #121612;
+            --photo-bg: #1a1a1a;
+        }
+
+        body {
+            background-color: var(--glitch-bg);
+            background-image: radial-gradient(circle, #151a15 1px, transparent 1px);
+            background-size: 40px 40px;
+            color: var(--glitch-text);
+            font-family: "Sawarabi Mincho", "Hiragino Mincho ProN", serif;
+            margin: 0;
+            padding: 0;
+            line-height: 2.0;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .redacted {
+            background-color: #000;
+            color: #000;
+            display: inline-block;
+            padding: 0 5px;
+            margin: 0 2px;
+            line-height: 1.2;
+            border-bottom: 1px solid var(--glitch-gold);
+            user-select: none;
+            cursor: help;
+        }
+
+        header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 20px 50px;
+            background-color: #0c0e0c;
+            border-bottom: 2px solid var(--glitch-gold);
+            position: sticky;
+            top: 0;
+            z-index: 999;
+        }
+
+        .logo-container { display: flex; align-items: center; gap: 15px; text-decoration: none; }
+        .logo-mark { font-size: 2.5rem; color: var(--accent-red); opacity: 0.7; }
+        .logo-text { display: flex; flex-direction: column; border-left: 1px solid var(--glitch-gold); padding-left: 15px; }
+        .logo-main { font-size: 1.8rem; font-weight: bold; letter-spacing: 0.4rem; color: var(--glitch-gold); }
+        .logo-sub { font-size: 0.75rem; letter-spacing: 0.15rem; color: #5a7a5a; font-weight: bold; }
+
+        nav { display: flex; gap: 20px; }
+        .nav-btn {
+            padding: 8px 18px;
+            border: 1px solid #3d523d;
+            background: none;
+            cursor: pointer;
+            text-decoration: none;
+            color: var(--glitch-text);
+            font-size: 0.95rem;
+            transition: 0.3s;
+            border-radius: 4px;
+            white-space: nowrap;
+        }
+        .nav-btn:hover { background-color: var(--glitch-gold); color: #000; }
+
+        .header-search-container { display: flex; align-items: center; gap: 10px; }
+        #site-search { 
+            padding: 8px 15px; 
+            width: 200px; 
+            border: 1px solid #3d523d; 
+            background: #151a15; 
+            color: #fff;
+            outline: none;
+        }
+
+        main { flex: 1; padding: 60px 20px; }
+        .document-area {
+            max-width: 900px;
+            margin: 0 auto;
+            background-color: var(--document-bg);
+            border: 1px solid #2a332a;
+            padding: 50px 60px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+            position: relative;
+        }
+
+        .document-title {
+            border-bottom: 2px solid var(--glitch-gold);
+            margin-bottom: 30px;
+            padding-bottom: 10px;
+        }
+        .document-title h1 {
+            font-size: 1.6rem;
+            color: var(--glitch-gold);
+            margin: 0;
+            text-align: center;
+            letter-spacing: 0.2rem;
+        }
+
+        .doc-section { margin-bottom: 40px; }
+        .doc-section h2 {
+            font-size: 1.2rem;
+            color: var(--glitch-gold);
+            border-left: 4px solid var(--glitch-gold);
+            padding-left: 15px;
+            margin-bottom: 20px;
+        }
+
+        .doc-text {
+            font-size: 1rem;
+            text-align: justify;
+            color: var(--glitch-text);
+            margin-bottom: 20px;
+        }
+
+        .credo-box {
+            border: 1px double var(--glitch-gold);
+            padding: 25px;
+            margin: 30px 0;
+            background-color: rgba(176, 141, 45, 0.03);
+            text-align: center;
+        }
+        .credo-text {
+            font-size: 1.1rem;
+            color: var(--glitch-gold);
+            letter-spacing: 0.1rem;
+            font-style: italic;
+        }
+
+        footer {
+            background-color: #000;
+            color: #b0c0b0;
+            padding: 20px 50px;
+            font-size: 0.8rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border-top: 3px solid var(--glitch-gold);
+            margin-top: auto;
+        }
+        .footer-left { flex: 1; }
+        .footer-right { font-family: monospace; letter-spacing: 1px; }
+
+    </style>
+</head>
+<body>
+
+<header>
+    <a href="toppage.html" class="logo-container">
+        <span class="logo-mark">⛩️</span>
+        <div class="logo-text">
+            <span class="logo-main">和護の杜</span>
+            <span class="logo-sub">WAGO-NO-MORI</span>
+        </div>
+    </a>
+    <nav>
+        <a href="about.html" class="nav-btn">和護の杜とは</a>
+        <a href="performance.html" class="nav-btn">活動実績</a>
+        <a href="guidance.html" class="nav-btn">設立者のご指導</a>
+    </nav>
+    <div class="header-search-container">
+        <input type="text" id="site-search" placeholder="サイト内検索…">
+        <button class="nav-btn" onclick="executeSearch()" style="background: var(--glitch-green); color: white; border: none;">検索</button>
+    </div>
+</header>
+
+<main>
+    <div class="document-area">
+        <div class="document-title">
+            <h1>神聖理化学研究所の理念と歩み</h1>
+        </div>
+
+        <section class="doc-section">
+            <h2>1. 設立理念</h2>
+            <div class="credo-box">
+                <span class="credo-text">「古の神威を、現代の智恵で解き明かし、永久の平穏を礎とする」</span>
+            </div>
+            <p class="doc-text">
+                神聖理化学研究所（以下、研究所）は、日本に伝承される「神」という概念を、単なる信仰の対象としてではなく、高次階層に実在する客観的な現象として捉え、その本質を究明することを目的に設立された。最先端の量子力学と伝統的な神学を融合させ、目に見えぬ加護を論理的に再構築することこそが、我々の使命であった。
+            </p>
+        </section>
+
+        <section class="doc-section">
+            <h2>2. 主要な活動内容</h2>
+            <p class="doc-text">
+                研究所の活動は多岐にわたるが、その中心は「神気」と呼ばれる特異な事象の観測と、それを用いた社会貢献であった。全国各地の聖域における磁場測定、古典に記された祭祀の数理モデル化、そしてそれらを応用した高効率な環境浄化技術の開発などが主な実績である。
+            </p>
+            <p class="doc-text">
+                これら長年の研究の集大成として辿り着いたのが、高次存在の力を物理階層へ正しく招致・定着させるための独自の理論体系、すなわち<strong>「神格顕現技術」</strong>である。
+            </p>
+        </section>
+
+        <section class="doc-section">
+            <h2>3. 組織の変遷と現在</h2>
+            <p class="doc-text">
+                かつての研究所は、真理を追究する純粋な研究機関としての性格が強かった。しかし、「神格顕現技術」の完成が近づくにつれ、その成果をより直接的に日本の守護へ役立てるべきだという革新的な機運が高まり、組織は大きな転換期を迎える。
+            </p>
+            <p class="doc-text">
+                現在は、その研究資産と意志を「和護の杜」が継承しており、私たちが今日享受している数々の安寧は、この研究所での地道かつ大胆な探究の延長線上に存在している。
+            </p>
+        </section>
+    </div>
+</main>
+
+<footer>
+    <div class="footer-left">
+        このサイトの内容はフィクションです。登場する人物・団体・名称等は架空であり、実在のものとは関係ありません。
+    </div>
+    <div class="footer-right">
+        &lt; 22/28 &gt; (Lv.5)
+    </div>
+</footer>
+
+<script>
+    function executeSearch() {
+        const val = document.getElementById('site-search').value;
+        if (val) {
+            window.location.href = `search.html?q=${encodeURIComponent(val)}`;
+        }
+    }
+
+    document.getElementById('site-search').addEventListener('keypress', function (e) {
+        if (e.key === 'Enter') {
+            executeSearch();
+        }
+    });
+</script>
+
+</body>
+</html>

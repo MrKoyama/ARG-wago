@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Investigator Portal - Project: SAKUYA</title>
+    <style>
+        :root {
+            --bg-color: #050705;
+            --text-color: #c0ccc0;
+            --accent-color: #b08d2d; 
+            --glitch-green: #2a4d2a;
+            --danger-color: #cc3333;
+        }
+
+        body {
+            background-color: var(--bg-color);
+            color: var(--text-color);
+            font-family: "Sawarabi Mincho", serif;
+            margin: 0;
+            display: flex;
+            justify-content: center;
+            min-height: 100vh;
+            overflow-x: hidden;
+        }
+
+        /* 走査線・ノイズ演出 */
+        body::before {
+            content: " ";
+            display: block;
+            position: fixed;
+            top: 0; left: 0; bottom: 0; right: 0;
+            background: linear-gradient(rgba(18, 16, 16, 0) 50%, rgba(0, 0, 0, 0.1) 50%), 
+                        linear-gradient(90deg, rgba(255, 0, 0, 0.03), rgba(0, 255, 0, 0.01), rgba(0, 0, 255, 0.03));
+            z-index: 10;
+            background-size: 100% 4px, 3px 100%;
+            pointer-events: none;
+        }
+
+        .container {
+            max-width: 800px;
+            width: 90%;
+            padding: 60px 20px;
+            z-index: 5;
+        }
+
+        .header {
+            text-align: center;
+            border-bottom: 1px solid var(--glitch-green);
+            margin-bottom: 50px;
+            padding-bottom: 20px;
+        }
+
+        h1 {
+            font-size: 1.8rem;
+            letter-spacing: 0.4rem;
+            color: var(--accent-color);
+            margin: 10px 0;
+        }
+
+        .section-title {
+            font-size: 1.1rem;
+            color: var(--accent-color);
+            border-left: 3px solid var(--accent-color);
+            padding-left: 15px;
+            margin: 40px 0 20px;
+            letter-spacing: 0.1rem;
+        }
+
+        .card {
+            background: rgba(10, 20, 10, 0.6);
+            border: 1px solid #1a2e1a;
+            padding: 30px;
+            line-height: 1.8;
+            margin-bottom: 30px;
+        }
+
+        .instruction-list {
+            padding-left: 20px;
+        }
+
+        .instruction-list li {
+            margin-bottom: 15px;
+            list-style-type: none;
+            position: relative;
+        }
+
+        .instruction-list li::before {
+            content: "▶";
+            position: absolute;
+            left: -20px;
+            color: var(--accent-color);
+            font-size: 0.8rem;
+        }
+
+        .important {
+            color: #fff;
+            font-weight: bold;
+            border-bottom: 1px solid var(--glitch-green);
+        }
+
+        .btn-container {
+            text-align: center;
+            margin-top: 60px;
+        }
+
+        .enter-button {
+            display: inline-block;
+            padding: 20px 60px;
+            color: #fff;
+            background-color: var(--glitch-green);
+            text-decoration: none;
+            font-weight: bold;
+            border: 1px solid var(--accent-color);
+            transition: 0.3s;
+            letter-spacing: 0.5rem;
+            font-size: 1.1rem;
+        }
+
+        .enter-button:hover {
+            background-color: var(--accent-color);
+            color: #000;
+            box-shadow: 0 0 30px var(--accent-color);
+        }
+
+        .footer-note {
+            margin-top: 50px;
+            font-size: 0.8rem;
+            color: #5a7a5a;
+            text-align: center;
+            font-family: monospace;
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <div class="header">
+        <div style="font-family: monospace; font-size: 0.8rem; color: var(--danger-color);">EXTERNAL INVESTIGATOR PORTAL</div>
+        <h1>和護の杜 潜入調査マニュアル</h1>
+    </div>
+
+    <div class="section-title">調査背景</div>
+    <div class="card">
+        <p>
+            日本の伝統保護と永久的な安全を訴え、急速に支持を広げている団体<span class="important">「一般財団法人 和護の杜」</span>。<br>
+            彼らの掲げる理想は一見すると崇高ですが、その裏では「不自然な土地買収」「調達経路の不明な膨大な資金」など、不可解な噂が絶えません。
+        </p>
+        <p>
+            あなたは外部協力者の調査員として、彼らの公式サイトへアクセスし、組織の最深部に隠された「真の目的」を暴き出してください。
+        </p>
+    </div>
+
+    <div class="section-title">捜査方法</div>
+    <div class="card">
+        <ul class="instruction-list">
+            <li>あなたは実在するWebサイトから捜査を開始し、<span class="important">“レベル8の機密情報”</span>に到達することを目指します。</li>
+            <li>サイト内のさまざまなページから<span class="important">「気になるワード」</span>を探し出し、それをWebサイト上の検索窓に入力することで、さらに深いページへアクセスできます。</li>
+            <li>一部の資料には隠されたヒントや情報があり、<span class="important">謎解きや考察</span>がカギとなります。</li>
+            <li>捜査対象となるページ総数は<span class="important">28ページ</span>。調査方法や時間に制限はありません。</li>
+        </ul>
+    </div>
+
+    <div class="btn-container">
+        <a href="toppage.html" class="enter-button">捜査を開始する</a>
+    </div>
+
+    <div class="footer-note">
+        NOTE: 本コンテンツはARG（代替現実ゲーム）でありフィクションです。<br>
+        実在の人物、団体、および事件とは一切関係ありません。
+    </div>
+</div>
+
+</body>
+</html>

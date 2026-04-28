@@ -1,0 +1,290 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>設立者のご指導 - 和護の杜 公式サイト</title>
+    <style>
+        :root {
+            --washi-bg: #fdfaf5;
+            --ink-black: #2c2c2c;
+            --sakura-pink: #ffb7c5;
+            --accent-gold: #d4af37;
+            --deep-forest: #1b3022;
+            --accent-red: #cc3333;
+        }
+
+        body {
+            background-color: var(--washi-bg);
+            background-image: url('data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSI4MCIgaGVpZ2h0PSI4MCIgdmlld0JveD0iMCAwIDgwIDgwIj48ZyBmaWxsPSIjZmZiN2M1IiBmaWxsLW9wYWNpdHk9IjAuMDUiPjxwYXRoIGQ9Ik0xNS41MzYgMTYuMTM2bC0zLjMzNiAyLjIwMyAxLjMzNiAyLjI5MyAzLjMzNi0yLjIwMy0xLjMzNi0yLjI5M3pNMzAgMTVsLTIgMnY0bDIgMnYtNGwtMi0yek0xNS41MzYgNjMuODY0bC0zLjMzNi0yLjIwMyAxLjMzNi0yLjI5MyAzLjMzNiAyLjI5My0xLjMzNiAyLjI5M3pNMzAgNjVsLTItMnYtNGwyIDJ2NGwtMi0yek02NC40NjQgNjMuODY0bDQuNDA8LTUuNjI5IDEuMzM2IDIuMjkzLTQuNDA8IDUuNjI5IDEuMzM2LTIuMjkzem03LjUzNi0xNC43NzJsMiAyLTVoLTRsLTItMnYtNGwyIDJ2NE03MS40NjQgMTUuMTM2bDQuNDA8IDUuNjI5IDEuMzM2LTIuMjkzLTQuNDA8LTUuNjI5IDEuMzM2IDIuMjkzem0xMC41MzYgOS4zNjRscs-yLTItMi00djRoMnYyTDUwIDI5Ljg2NGwtNS44NjQgNC44NjQgNS44NjQgNC44NjQgOC44NjQtNi44NjQgOC44NjQgNi44NjQgNS44NjQtNC44NjR6Ii8+PC9nPjwvc3ZnPg==');
+            color: var(--ink-black);
+            font-family: "Sawarabi Mincho", "Hiragino Mincho ProN", serif;
+            margin: 0;
+            padding: 0;
+            line-height: 2.2;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            overflow-x: hidden;
+        }
+
+        .phrase { display: inline-block; vertical-align: top; }
+
+        /* --- ヘッダー --- */
+        header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 20px 50px;
+            background-color: rgba(253, 250, 245, 0.95);
+            border-bottom: 2px solid var(--accent-gold);
+            position: sticky;
+            top: 0;
+            z-index: 999;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+        }
+
+        .logo-container { display: flex; align-items: center; gap: 15px; text-decoration: none; color: var(--ink-black); }
+        .logo-mark { font-size: 2.5rem; line-height: 1; color: var(--accent-red); }
+        .logo-text { display: flex; flex-direction: column; border-left: 1px solid var(--accent-gold); padding-left: 15px; }
+        .logo-main { font-size: 1.8rem; font-weight: bold; letter-spacing: 0.4rem; color: var(--deep-forest); }
+        .logo-sub { font-size: 0.75rem; letter-spacing: 0.15rem; color: var(--accent-gold); font-weight: bold; }
+
+        nav { display: flex; gap: 20px; }
+        .nav-btn {
+            padding: 8px 18px;
+            border: 1px solid var(--accent-gold);
+            background: none;
+            cursor: pointer;
+            text-decoration: none;
+            color: var(--ink-black);
+            font-size: 0.95rem;
+            transition: 0.3s;
+            border-radius: 4px;
+            white-space: nowrap;
+        }
+        .nav-btn:hover { background-color: var(--accent-gold); color: white; }
+
+        .header-search-container { display: flex; align-items: center; gap: 10px; }
+        #site-search { padding: 8px 15px; width: 200px; border: 1px solid var(--accent-gold); background: rgba(255,255,255,0.7); }
+
+        /* --- コンテンツ --- */
+        main { flex: 1; }
+        
+        .page-title-area {
+            background: var(--deep-forest);
+            color: white;
+            padding: 60px 20px;
+            text-align: center;
+        }
+        .page-title-area h1 { font-size: 2.2rem; letter-spacing: 0.5rem; margin: 0; }
+
+        .container {
+            max-width: 800px;
+            margin: 60px auto;
+            padding: 0 40px;
+        }
+
+        .source-info {
+            text-align: center;
+            font-size: 0.9rem;
+            color: var(--accent-gold);
+            margin-bottom: 10px;
+            letter-spacing: 0.1rem;
+        }
+
+        .founder-symbol {
+            text-align: center;
+            font-size: 3rem;
+            color: var(--accent-gold);
+            margin-bottom: 40px;
+            opacity: 0.7;
+        }
+
+        .guidance-item {
+            background: white;
+            border: 1px solid #eee;
+            padding: 45px;
+            margin-bottom: 60px;
+            position: relative;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.02);
+        }
+        .guidance-item::before {
+            content: ""; position: absolute; top: 0; left: 0; width: 100%; height: 4px; background: var(--accent-gold);
+        }
+
+        h2 {
+            font-size: 1.5rem;
+            color: var(--accent-red);
+            text-align: center;
+            margin-bottom: 30px;
+            letter-spacing: 0.2rem;
+            border-left: none;
+            padding-left: 0;
+        }
+
+        .guidance-content {
+            font-size: 1.1rem;
+            text-align: justify;
+            color: var(--ink-black);
+        }
+
+        /* --- フッター --- */
+        footer {
+            background-color: var(--deep-forest);
+            color: rgba(255, 255, 255, 0.7);
+            padding: 20px 50px;
+            font-size: 0.8rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border-top: 3px solid var(--accent-gold);
+            margin-top: auto;
+        }
+        .footer-left { flex: 1; }
+        .footer-right { font-family: monospace; letter-spacing: 1px; }
+
+        /* --- サクヤ姫 & チャット --- */
+        #sakuyahime-container { position: fixed; bottom: 80px; right: 20px; z-index: 1000; cursor: pointer; }
+        #sakuyahime-img { width: 160px; height: auto; transition: transform 0.3s ease; }
+        #sakuyahime-img:hover { transform: scale(1.05); }
+
+        #chat-window {
+            position: fixed; bottom: 250px; right: 30px; width: 340px; height: 450px;
+            background: rgba(255, 255, 255, 0.98); border: 2px solid var(--deep-forest);
+            box-shadow: 0 10px 30px rgba(0,0,0,0.2); display: none; flex-direction: column; z-index: 1001;
+        }
+        .chat-header { background: var(--deep-forest); color: var(--accent-gold); padding: 12px; font-weight: bold; display: flex; justify-content: space-between; }
+        #chat-logs { flex: 1; overflow-y: auto; padding: 20px; font-size: 0.95rem; display: flex; flex-direction: column; gap: 15px; }
+        .msg-sakuyahime { align-self: flex-start; background: #f0f4f1; padding: 10px 15px; border-left: 4px solid var(--sakura-pink); max-width: 85%; color: var(--ink-black); }
+        .msg-user { align-self: flex-end; background: var(--deep-forest); color: white; padding: 10px 15px; max-width: 85%; border-radius: 4px; }
+        .chat-input-area { border-top: 2px solid var(--accent-gold); padding: 15px; display: flex; gap: 10px; }
+        #user-input { flex: 1; padding: 8px; border: 1px solid #ddd; }
+    </style>
+</head>
+<body>
+
+<header>
+    <a href="toppage.html" class="logo-container">
+        <span class="logo-mark">⛩️</span>
+        <div class="logo-text">
+            <span class="logo-main">和護の杜</span>
+            <span class="logo-sub">WAGO-NO-MORI</span>
+        </div>
+    </a>
+    <nav>
+        <a href="about.html" class="nav-btn">和護の杜とは</a>
+        <a href="performance.html" class="nav-btn">活動実績</a>
+        <a href="guidance.html" class="nav-btn">設立者のご指導</a>
+    </nav>
+    <div class="header-search-container">
+        <input type="text" id="site-search" placeholder="サイト内検索…">
+        <button class="nav-btn" onclick="executeSearch()" style="background: var(--deep-forest); color: white; border: none;">検索</button>
+    </div>
+</header>
+
+<main>
+    <div class="page-title-area">
+        <h1>設立者のご指導</h1>
+    </div>
+
+    <div class="container">
+
+        <section class="guidance-item">
+            <h2>第一訓：誇りある日本の護持</h2>
+            <div class="guidance-content">
+                <p>
+                    <span class="phrase">我らの歩みは、この国が古来より育んできた気高い精神と、</span><br>
+                    <span class="phrase">四季折々の美しい情景を未来へと繋ぐためにある。</span><br>
+                    <span class="phrase">変化の激しい現代にあっても、日本らしい日本の姿を</span>
+                    <span class="phrase">変わることなく護り抜くこと。それが和護の杜の不変の誓いである。</span>
+                </p>
+            </div>
+        </section>
+
+        <section class="guidance-item">
+            <h2>第二訓：研鑽と実践による貢献</h2>
+            <div class="guidance-content">
+                <p>
+                    <span class="phrase">美しき伝統を護ることは、単なる追憶ではない。</span><br>
+                    <span class="phrase">自らが主体となって行動し、智慧を絞り、汗を流す実践こそが肝要である。</span><br>
+                    <span class="phrase">国を想う一人ひとりの積極的な行動が、</span>
+                    <span class="phrase">日本の安らぎを築く確かな礎となる。</span>
+                </p>
+            </div>
+        </section>
+
+        <section class="guidance-item">
+            <h2>第三訓：調和と共生への至福</h2>
+            <div class="guidance-content">
+                <p>
+                    <span class="phrase">個の枠を超え、この国という大きな営みの一部として溶け込むとき、</span><br>
+                    <span class="phrase">人は真の意味での心の安らぎを見出すことができる。</span><br>
+                    <span class="phrase">大いなる和の中で自らの役割を果たし、日本そのものと同化する喜び。</span><br>
+                    <span class="phrase">その至高の調和こそが、我らが目指すべき最終の境地である。</span>
+                </p>
+            </div>
+        </section>
+    </div>
+</main>
+
+<div id="sakuyahime-container" onclick="toggleChat()">
+    <img src="images/sakuya.png" id="sakuyahime-img" alt="サクヤ姫">
+</div>
+
+<div id="chat-window">
+    <div class="chat-header"><span>サクヤ姫との語らい</span><span style="cursor:pointer" onclick="toggleChat()">×</span></div>
+    <div id="chat-logs">
+        <div class="msg-sakuyahime">サクヤ姫：設立者のご指導は、和護の杜の活動指針であり、行動理念でもあるんですよ。</div>
+    </div>
+    <div class="chat-input-area">
+        <input type="text" id="user-input" placeholder="お言葉について尋ねる...">
+        <button class="nav-btn" onclick="sendMessage()" style="background: var(--deep-forest); color: white;">送信</button>
+    </div>
+</div>
+
+<footer>
+    <div class="footer-left">このサイトの内容はフィクションです。登場する人物・団体・名称等は架空であり、実在のものとは関係ありません。</div>
+    <div class="footer-right">&lt; 4/28 &gt; (Lv.0)</div>
+</footer>
+
+<script>
+    function toggleChat() {
+        const chat = document.getElementById('chat-window');
+        chat.style.display = (chat.style.display === 'flex') ? 'none' : 'flex';
+    }
+
+    function sendMessage() {
+        const input = document.getElementById('user-input');
+        const text = input.value;
+        if (!text) return;
+        addLog(text, 'user');
+        input.value = '';
+
+        setTimeout(() => {
+            let reply = "設立者様が記された『和護真経』のお言葉は、どれもありがたく、素晴らしいものです。私たちが迷わぬよう、常に光を示してくださいます。";
+            addLog(reply, 'sakuyahime');
+        }, 1000);
+    }
+
+    function addLog(text, sender) {
+        const logs = document.getElementById('chat-logs');
+        const div = document.createElement('div');
+        div.className = sender === 'sakuyahime' ? 'msg-sakuyahime' : 'msg-user';
+        div.innerText = (sender === 'sakuyahime' ? 'サクヤ姫：' : '') + text;
+        logs.appendChild(div);
+        logs.scrollTop = logs.scrollHeight;
+    }
+
+    function executeSearch() {
+        const val = document.getElementById('site-search').value;
+        if (val) { window.location.href = `search.html?q=${encodeURIComponent(val)}`; }
+    }
+
+    document.getElementById('site-search').addEventListener('keypress', function (e) {
+        if (e.key === 'Enter') { executeSearch(); }
+    });
+</script>
+
+</body>
+</html>

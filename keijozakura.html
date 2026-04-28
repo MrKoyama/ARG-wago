@@ -1,0 +1,312 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>【研究資料】経常桜における視覚的共鳴と精神的安定の相関 - 和護の杜</title>
+    <style>
+        :root {
+            --glitch-bg: #080a08;
+            --glitch-gold: #b08d2d; 
+            --glitch-text: #c0ccc0; 
+            --glitch-green: #2a4d2a;
+            --accent-red: #cc3333;
+            --deep-forest: #1b3022;
+        }
+
+        body {
+            background-color: var(--glitch-bg);
+            background-image: radial-gradient(circle, #151a15 1px, transparent 1px);
+            background-size: 40px 40px;
+            color: var(--glitch-text);
+            font-family: "Sawarabi Mincho", "Hiragino Mincho ProN", serif;
+            margin: 0;
+            padding: 0;
+            line-height: 2.0;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .redacted {
+            background-color: #000;
+            color: #000;
+            display: inline-block;
+            padding: 0 5px;
+            margin: 0 2px;
+            line-height: 1.2;
+            border-bottom: 1px solid var(--glitch-gold);
+            user-select: none;
+            cursor: help;
+        }
+
+        header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 20px 50px;
+            background-color: #0c0e0c;
+            border-bottom: 2px solid var(--glitch-gold);
+            position: sticky;
+            top: 0;
+            z-index: 999;
+        }
+
+        .logo-container { display: flex; align-items: center; gap: 15px; text-decoration: none; }
+        .logo-mark { font-size: 2.5rem; color: var(--accent-red); opacity: 0.7; }
+        .logo-text { display: flex; flex-direction: column; border-left: 1px solid var(--glitch-gold); padding-left: 15px; }
+        .logo-main { font-size: 1.8rem; font-weight: bold; letter-spacing: 0.4rem; color: var(--glitch-gold); }
+        .logo-sub { font-size: 0.75rem; letter-spacing: 0.15rem; color: #5a7a5a; font-weight: bold; }
+
+        nav { display: flex; gap: 20px; }
+        .nav-btn {
+            padding: 8px 18px;
+            border: 1px solid #3d523d;
+            background: none;
+            cursor: pointer;
+            text-decoration: none;
+            color: var(--glitch-text);
+            font-size: 0.95rem;
+            transition: 0.3s;
+            border-radius: 4px;
+            white-space: nowrap;
+        }
+        .nav-btn:hover { background-color: var(--glitch-gold); color: #000; }
+
+        .header-search-container { display: flex; align-items: center; gap: 10px; }
+        #site-search { 
+            padding: 8px 15px; 
+            width: 200px; 
+            border: 1px solid #3d523d; 
+            background: #151a15; 
+            color: #fff;
+            outline: none;
+        }
+
+        main { flex: 1; padding: 60px 20px; }
+        .container { max-width: 800px; margin: 0 auto; }
+
+        .report-header {
+            border-bottom: 1px solid var(--glitch-gold);
+            margin-bottom: 40px;
+            padding-bottom: 20px;
+        }
+        .report-header h1 { 
+            font-size: 1.6rem; 
+            color: var(--glitch-gold); 
+            margin: 0; 
+            letter-spacing: 0.1rem; 
+            line-height: 1.4; 
+            word-break: keep-all; 
+        }
+
+        section { margin-bottom: 60px; }
+        h2 {
+            font-size: 1.5rem;
+            color: var(--glitch-gold);
+            border-left: 3px solid var(--glitch-gold);
+            padding-left: 15px;
+            margin-bottom: 25px;
+        }
+
+        .highlight { color: var(--glitch-gold); font-weight: bold; }
+
+        .note-box {
+            font-size: 0.85rem;
+            color: #8a9a8a;
+            border: 1px dashed #3d523d;
+            padding: 15px;
+            margin-top: 10px;
+            background: rgba(0, 5, 0, 0.5);
+        }
+
+        #sakuyahime-container { position: fixed; bottom: 80px; right: 20px; z-index: 1000; cursor: pointer; }
+        #sakuyahime-img { 
+            width: 160px; 
+            height: auto; 
+            transition: transform 0.3s ease; 
+        }
+        #sakuyahime-container:hover #sakuyahime-img {
+            transform: scale(1.05);
+        }
+        
+        #chat-window {
+            position: fixed; bottom: 250px; right: 30px; width: 340px; height: 450px;
+            background: #0c0e0c; border: 2px solid var(--glitch-gold); display: none;
+            flex-direction: column; z-index: 1001; color: var(--glitch-text);
+        }
+        .chat-header { background: var(--glitch-gold); color: #000; padding: 12px; font-weight: bold; display: flex; justify-content: space-between; }
+        #chat-logs { flex: 1; overflow-y: auto; padding: 20px; font-size: 0.9rem; display: flex; flex-direction: column; gap: 15px; }
+        .msg-sakuyahime { background: #1a251a; padding: 10px 15px; border-left: 4px solid var(--glitch-gold); }
+        .msg-user { align-self: flex-end; background: #3d523d; color: white; padding: 10px 15px; border-radius: 4px; }
+        .chat-input-area { border-top: 1px solid var(--glitch-gold); padding: 15px; display: flex; gap: 10px; }
+        #user-input { flex: 1; padding: 8px; background: #000; border: 1px solid #3d523d; color: var(--glitch-text); }
+
+        footer {
+            background-color: #000;
+            color: #b0c0b0;
+            padding: 20px 50px;
+            font-size: 0.8rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border-top: 3px solid var(--glitch-gold);
+            margin-top: auto;
+        }
+        .footer-left { flex: 1; }
+        .footer-right { font-family: monospace; letter-spacing: 1px; }
+    </style>
+</head>
+<body>
+
+<header>
+    <a href="toppage.html" class="logo-container">
+        <span class="logo-mark">⛩️</span>
+        <div class="logo-text">
+            <span class="logo-main">和護の杜</span>
+            <span class="logo-sub">WAGO-NO-MORI</span>
+        </div>
+    </a>
+    <nav>
+        <a href="about.html" class="nav-btn">和護の杜とは</a>
+        <a href="performance.html" class="nav-btn">活動実績</a>
+        <a href="guidance.html" class="nav-btn">設立者のご指導</a>
+    </nav>
+    <div class="header-search-container">
+        <input type="text" id="site-search" placeholder="サイト内検索…">
+        <button class="nav-btn" onclick="executeSearch()" style="background: var(--glitch-green); color: white; border: none;">検索</button>
+    </div>
+</header>
+
+<main>
+    <div class="container">
+        <div class="report-header">
+            <h1>【研究資料】経常桜における視覚的共鳴と精神性安定の相関</h1>
+        </div>
+
+        <section>
+            <h2>1. 経常桜（けいじょうざくら）の定義</h2>
+            <p>
+                「経常桜」とは、当団体が保有する <span class="redacted">分子配列固定技術</span> により、対象植物の分子構造を極小レベルで固定・維持した桜の総称である。
+            </p>
+            <p>
+                従来の保存技術と異なり、構成分子の空間的配置を恒久的に固定することで、<span class="highlight">「劣化し得ない絶対的な美」</span>を物理的に出力する。これは単なる展示物ではなく、杜の空間そのものを定義・安定させるための高精度な基幹ユニットとして機能する。
+            </p>
+        </section>
+
+        <section>
+            <h2>2. 研究と開発の系譜</h2>
+            <p>
+                本プロジェクトは、設立者による「美しき日本の永続化」という構想に基づき開発された<span class="redacted">分子配列固定技術</span>をその中核とする。
+            </p>
+            <p>
+                当初、植物の細胞構造は環境変化や時間経過による衰退を免れ得ないと考えられていたが、分子レベルでの化学結合を特定条件下で強制的に維持・固定する手法を確立。これにより、桜が最も美しく咲き誇る瞬間の状態を物理的に「静止」させ、落花や枯死といった自然の摂理を完全に排除することに成功した。
+            </p>
+            <p>
+                現在の経常桜は、外部からの熱力学的干渉を無効化し、周囲の環境に関わらず常に一定の形態を保つよう設計されている。これは単なる観賞用植物ではなく、この国の風景を理想的な形で「凍結」するための、最初の完成された雛形である。
+            </p>
+            <div class="note-box">
+                ※経常桜の維持に要する膨大なエネルギーの供給源およびその還流経路については、別途資料を参照のこと。
+            </div>
+        </section>
+
+        <section>
+            <h2>3. 効能と心理的影響</h2>
+            <p>
+                経常桜の最大の特徴は、その美しさが<span class="highlight">観測者の主観に依存しない</span>点にある。あらゆる負の感情や精神的不安定さは、この桜を視認するプロセスにおいて強制的に平坦化される。
+            </p>
+            <ul>
+                <li><strong>精神の平準化：</strong> 分子共鳴が特定の神経受容体に干渉し、個人の不安や抵抗感を無効化する。</li>
+                <li><strong>時間の感覚麻痺：</strong> 変化の止まった風景に暴露し続けることで、脳内の時間軸が杜の環境に上書きされる。</li>
+                <li><strong>絶対的な帰属意識：</strong> この美しさを享受し続けることが、個人の至上目的であるという潜在的な動機付けが完了する。</li>
+            </ul>
+            <p style="margin-top: 20px; color: var(--accent-red); font-size: 0.9rem;">
+                ※警告：長時間（48時間以上）の無防備な観測は、潜在意識への深刻な刷り込みを誘発し、自我境界の消失または特定の思想体系への完全な適合を招く恐れがある。
+            </p>
+        </section>
+    </div>
+</main>
+
+<div id="sakuyahime-container" onclick="toggleChat()">
+    <img src="images/sakuya.png" id="sakuyahime-img" alt="サクヤ姫">
+</div>
+
+<div id="chat-window">
+    <div class="chat-header">
+        <span>サクヤ姫との語らい</span>
+        <span style="cursor:pointer" onclick="toggleChat()">×</span>
+    </div>
+    <div id="chat-logs">
+        <div class="msg-sakuyahime">サクヤ姫：この桜は、美しい日本の風景としてずっと咲き続けます。それは、とても素晴らしいことだと思いませんか？</div>
+    </div>
+    <div class="chat-input-area">
+        <input type="text" id="user-input" placeholder="言葉を掛ける...">
+        <button class="nav-btn" onclick="sendMessage()" style="background: var(--glitch-gold); color: #000; border: none;">送信</button>
+    </div>
+</div>
+
+<footer>
+    <div class="footer-left">
+        このサイトの内容はフィクションです。登場する人物・団体・名称等は架空であり、実在のものとは関係ありません。
+    </div>
+    <div class="footer-right">
+        &lt; 5/28 &gt; (Lv.1)
+    </div>
+</footer>
+
+<script>
+    function executeSearch() {
+        const val = document.getElementById('site-search').value;
+        if (val) {
+            window.location.href = `search.html?q=${encodeURIComponent(val)}`;
+        }
+    }
+
+    document.getElementById('site-search').addEventListener('keypress', function (e) {
+        if (e.key === 'Enter') {
+            executeSearch();
+        }
+    });
+
+    function toggleChat() {
+        const chat = document.getElementById('chat-window');
+        chat.style.display = (chat.style.display === 'flex') ? 'none' : 'flex';
+    }
+
+    function sendMessage() {
+        const input = document.getElementById('user-input');
+        const text = input.value;
+        if (!text) return;
+
+        addLog(text, 'user');
+        input.value = '';
+
+        setTimeout(() => {
+            let reply = "";
+            if (text.includes("エネルギー") || text.includes("供給")) {
+                reply = "経常桜を咲かせ続けるためには、膨大なエネルギーが必要なんです。日本の発電量の何%を占めるのか…";
+            } 
+            else {
+                const replies = [
+                    "美しいものは、そのままの姿で止めておかなければならないのです。",
+                    "あなたも、この風景の一部になりたいと思いませんか？",
+                    "ここでは、悲しいことは何も起こりません。ただ桜が咲いているだけです。"
+                ];
+                reply = replies[Math.floor(Math.random() * replies.length)];
+            }
+            addLog(reply, 'sakuyahime');
+        }, 1200);
+    }
+
+    function addLog(text, sender) {
+        const logs = document.getElementById('chat-logs');
+        const div = document.createElement('div');
+        div.className = sender === 'sakuyahime' ? 'msg-sakuyahime' : 'msg-user';
+        div.innerText = (sender === 'sakuyahime' ? 'サクヤ姫：' : '') + text;
+        logs.appendChild(div);
+        logs.scrollTop = logs.scrollHeight;
+    }
+</script>
+
+</body>
+</html>

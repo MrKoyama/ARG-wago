@@ -1,0 +1,275 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>【内部資料】有機物定常凍結理論に関する一考察 - 和護の杜</title>
+    <style>
+        :root {
+            --glitch-bg: #080a08;
+            --glitch-gold: #b08d2d; 
+            --glitch-text: #c0ccc0; 
+            --glitch-green: #2a4d2a;
+            --accent-red: #cc3333;
+            --document-bg: #121612;
+        }
+
+        body {
+            background-color: var(--glitch-bg);
+            background-image: radial-gradient(circle, #151a15 1px, transparent 1px);
+            background-size: 40px 40px;
+            color: var(--glitch-text);
+            font-family: "Sawarabi Mincho", "Hiragino Mincho ProN", serif;
+            margin: 0;
+            padding: 0;
+            line-height: 2.0;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .redacted {
+            background-color: #000;
+            color: #000;
+            display: inline-block;
+            padding: 0 5px;
+            margin: 0 2px;
+            line-height: 1.2;
+            border-bottom: 1px solid var(--glitch-gold);
+            user-select: none;
+            cursor: help;
+        }
+
+        header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 20px 50px;
+            background-color: #0c0e0c;
+            border-bottom: 2px solid var(--glitch-gold);
+            position: sticky;
+            top: 0;
+            z-index: 999;
+        }
+
+        .logo-container { display: flex; align-items: center; gap: 15px; text-decoration: none; }
+        .logo-mark { font-size: 2.5rem; color: var(--accent-red); opacity: 0.7; }
+        .logo-text { display: flex; flex-direction: column; border-left: 1px solid var(--glitch-gold); padding-left: 15px; }
+        .logo-main { font-size: 1.8rem; font-weight: bold; letter-spacing: 0.4rem; color: var(--glitch-gold); }
+        .logo-sub { font-size: 0.75rem; letter-spacing: 0.15rem; color: #5a7a5a; font-weight: bold; }
+
+        nav { display: flex; gap: 20px; }
+        .nav-btn {
+            padding: 8px 18px;
+            border: 1px solid #3d523d;
+            background: none;
+            cursor: pointer;
+            text-decoration: none;
+            color: var(--glitch-text);
+            font-size: 0.95rem;
+            transition: 0.3s;
+            border-radius: 4px;
+            white-space: nowrap;
+        }
+        .nav-btn:hover { background-color: var(--glitch-gold); color: #000; }
+
+        .header-search-container { display: flex; align-items: center; gap: 10px; }
+        #site-search { 
+            padding: 8px 15px; 
+            width: 200px; 
+            border: 1px solid #3d523d; 
+            background: #151a15; 
+            color: #fff;
+            outline: none;
+        }
+
+        main { flex: 1; padding: 60px 20px; }
+        .document-area {
+            max-width: 800px;
+            margin: 0 auto;
+            background-color: var(--document-bg);
+            border: 1px solid #2a332a;
+            padding: 50px 60px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+            position: relative;
+        }
+
+        .archive-tag {
+            max-width: 800px;
+            margin: 15px auto 0;
+            text-align: right;
+            font-size: 0.8rem;
+            color: #5a6a5a;
+        }
+
+        .document-title {
+            border-bottom: 2px solid var(--glitch-gold);
+            margin-bottom: 30px;
+            padding-bottom: 10px;
+        }
+        .document-title h1 {
+            font-size: 1.6rem;
+            color: var(--glitch-gold);
+            margin: 0;
+            text-align: center;
+            letter-spacing: 0.2rem;
+        }
+
+        .document-meta {
+            font-size: 0.9rem;
+            margin-bottom: 40px;
+            color: #8a9a8a;
+            display: flex;
+            flex-direction: column;
+            gap: 5px;
+        }
+
+        .doc-section { margin-bottom: 50px; }
+        .doc-section h2 {
+            font-size: 1.2rem;
+            color: var(--glitch-gold);
+            border-left: 4px solid var(--glitch-gold);
+            padding-left: 15px;
+            margin-bottom: 20px;
+        }
+
+        .doc-text {
+            font-size: 1rem;
+            text-align: justify;
+        }
+
+        .researcher-note {
+            margin-top: 30px;
+            padding: 20px;
+            border: 1px dashed #444;
+            background-color: rgba(20, 25, 20, 0.7);
+            font-size: 0.95rem;
+        }
+        .note-header {
+            color: var(--accent-red);
+            font-weight: bold;
+            display: block;
+            margin-bottom: 10px;
+        }
+
+        footer {
+            background-color: #000;
+            color: #b0c0b0;
+            padding: 20px 50px;
+            font-size: 0.8rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border-top: 3px solid var(--glitch-gold);
+            margin-top: auto;
+        }
+        .footer-left { flex: 1; }
+        .footer-right { font-family: monospace; letter-spacing: 1px; }
+
+    </style>
+</head>
+<body>
+
+<header>
+    <a href="toppage.html" class="logo-container">
+        <span class="logo-mark">⛩️</span>
+        <div class="logo-text">
+            <span class="logo-main">和護の杜</span>
+            <span class="logo-sub">WAGO-NO-MORI</span>
+        </div>
+    </a>
+    <nav>
+        <a href="about.html" class="nav-btn">和護の杜とは</a>
+        <a href="performance.html" class="nav-btn">活動実績</a>
+        <a href="guidance.html" class="nav-btn">設立者のご指導</a>
+    </nav>
+    <div class="header-search-container">
+        <input type="text" id="site-search" placeholder="サイト内検索…">
+        <button class="nav-btn" onclick="executeSearch()" style="background: var(--glitch-green); color: white; border: none;">検索</button>
+    </div>
+</header>
+
+<main>
+    <div class="document-area">
+        <div class="document-title">
+            <h1>有機物定常凍結理論に関する一考察</h1>
+        </div>
+
+        <div class="document-meta">
+            <span>作成日：1997年11月28日</span>
+            <span>担当研究員：長谷川 忠敬</span>
+            <span>認証：<span class="redacted">東條 宗一</span></span>
+        </div>
+
+        <section class="doc-section">
+            <h2>1. 理論の提唱：真の「日本の保存」</h2>
+            <p class="doc-text">
+                国家の存続とは、領土の維持に留まらず、その中核を成す「国民」と「文化」の永劫不変な保存を意味する。
+                しかし、肉体という名の有機体は、時間の経過と共に腐敗し、変質を免れない。
+                本理論は、特定の周波数帯を用いた分子振動の完全停止により、対象となる有機物のみを「定常状態（凍結）」へと移行させ、物理的時間の干渉を無効化するものである。
+            </p>
+        </section>
+
+        <section class="doc-section">
+            <h2>2. 技術的特質と作用範囲</h2>
+            <p class="doc-text">
+                現在の技術段階において、本理論に基づく定常凍結は有機物に対してのみ有効性が確認されている。
+                本技術は、照射範囲内に存在する有機体の細胞内水分およびタンパク質分子の熱運動を、電磁気的な干渉によって極限まで抑制する。
+                有効照射範囲は、現段階の出力装置を用いた場合、半径約15メートル、深度5メートルの円筒領域を完全にカバーする。
+                この範囲内にある生体組織は、外部との化学的反応を一切遮断された「静止した時間」の中に置かれる。
+                ただし、現時点では凍結状態の維持に必要なエネルギー効率に課題を残しており、広域運用に向けたさらなる技術の向上が期待されている。
+            </p>
+
+            <div class="researcher-note">
+                <span class="note-header">【担当研究員・長谷川による付記（1998年2月）：運用上の重大な留意事項】</span>
+                <p class="doc-text">
+                    本技術の検証過程において、極めて深刻な不備が確認された。
+                    肉体組織は完全に固定されたものの、被験者の「意識」のみが凍結を免れ、不動の肉体内に残留し続ける事態を確認している。
+                    外部観測上は静止しているが、脳波解析によれば被験者は極限の覚醒状態にあり、暗闇の中で永久に意識を維持し続けていると推測される。
+                    今後、人間を対象とした定常凍結を実施する際は、神経系統の同時遮断を徹底せねばならない。本技術を無秩序に扱うことは、死をも上回る永劫の苦痛を招く危険性がある。
+                </p>
+            </div>
+        </section>
+
+        <section class="doc-section" style="margin-bottom: 0;">
+            <h2>3. 結論：国家資源の永劫定着に向けた展望</h2>
+            <p class="doc-text">
+                本理論の真価は、選別された「理想的な日本人」を、時間の経過による劣化や変質から切り離し、標本として恒久的に保存しうる点にある。
+                肉体の定常化は、思想の揺らぎや老化を物理的に封殺することを意味し、これによって国家にとっての最良の資産を、完成された状態のまま不動のものとすることが可能となる。
+                現時点では対象が有機物に限定されているが、将来的に本理論を拡張し、建造物や公共インフラ等の無機物へも適用可能となれば、国家の全ての構成要素を定常状態へと移行させる「完全なる保存と安定」の実現が期待される。
+                本技術の深化こそが、流動的な時間の支配から脱却し、不変の日本を確立するための礎となることは疑いようがない。
+            </p>
+        </section>
+    </div>
+    
+    <div class="archive-tag">
+        ※旧<span class="redacted">神聖理化学研究所</span>内部保存資料
+    </div>
+</main>
+
+<footer>
+    <div class="footer-left">
+        このサイトの内容はフィクションです。登場する人物・団体・名称等は架空であり、実在のものとは関係ありません。
+    </div>
+    <div class="footer-right">
+        &lt; 12/28 &gt; (Lv.3)
+    </div>
+</footer>
+
+<script>
+    function executeSearch() {
+        const val = document.getElementById('site-search').value;
+        if (val) {
+            window.location.href = `search.html?q=${encodeURIComponent(val)}`;
+        }
+    }
+
+    document.getElementById('site-search').addEventListener('keypress', function (e) {
+        if (e.key === 'Enter') {
+            executeSearch();
+        }
+    });
+</script>
+
+</body>
+</html>

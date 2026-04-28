@@ -1,0 +1,351 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>検索結果 - 和護の杜 公式サイト</title>
+    <style>
+        :root {
+            --washi-bg: #fdfaf5;
+            --ink-black: #2c2c2c;
+            --sakura-pink: #ffb7c5;
+            --accent-gold: #d4af37;
+            --deep-forest: #1b3022;
+            --accent-red: #cc3333;
+            /* 裏モード用 */
+            --glitch-bg: #080a08;
+            --glitch-gold: #b08d2d; 
+            --glitch-text: #c0ccc0; 
+        }
+
+        /* --- 裏システム起動時のスタイル --- */
+        body.system-override {
+            background-color: var(--glitch-bg) !important;
+            background-image: radial-gradient(circle, #151a15 1px, transparent 1px) !important;
+            background-size: 40px 40px !important;
+            color: var(--glitch-text) !important;
+            transition: background-color 0.8s ease;
+        }
+
+        body.system-override header {
+            background-color: #0c0e0c !important;
+            border-bottom: 2px solid var(--glitch-gold) !important;
+        }
+
+        body.system-override .logo-main { color: var(--glitch-gold) !important; }
+        body.system-override .logo-sub { color: #5a7a5a !important; }
+        
+        body.system-override .nav-btn { color: var(--glitch-text) !important; border-color: #3d523d !important; }
+        body.system-override .nav-btn:hover { background: var(--glitch-gold); color: #000; }
+        body.system-override #site-search { background: #151a15; color: #fff; border-color: #3d523d; }
+
+        body.system-override .search-header { border-bottom: 1px solid var(--glitch-gold) !important; }
+        body.system-override .search-header h1 { color: var(--glitch-gold) !important; }
+        
+        body.system-override .result-item { border-bottom: 1px solid #1a251a !important; }
+        body.system-override .result-title { 
+            color: var(--glitch-gold) !important; 
+            text-decoration-color: var(--glitch-gold) !important; 
+        }
+        body.system-override .result-text { color: #8a9a8a !important; }
+
+        body.system-override footer { 
+            border-top: 3px solid var(--glitch-gold) !important; 
+            background: #000 !important; 
+            color: #b0c0b0 !important; 
+        }
+
+        /* 通常スタイル */
+        body {
+            background-color: var(--washi-bg);
+            background-image: url('data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSI4MCIgaGVpZ2h0PSI4MCIgdmlld0JveD0iMCAwIDgwIDgwIj48ZyBmaWxsPSIjZmZiN2M1IiBmaWxsLW9wYWNpdHk9IjAuMDUiPjxwYXRoIGQ9Ik0xNS41MzYgMTYuMTM2bC0zLjMzNiAyLjIwMyAxLjMzNiAyLjI5MyAzLjMzNi0yLjIwMy0xLjMzNi0yLjI5M3pNMzAgMTVsLTIgMnY0bDIgMnYtNGwtMi0yek0xNS41MzYgNjMuODY0bC0zLjMzNi0yLjIwMyAxLjMzNi0yLjI5MyAzLjMzNiAyLjI5My0xLjMzNiAyLjI5M3pNMzAgNjVsLTItMnYtNGwyIDJ2NGwtMi0yek02NC40NjQgNjMuODY0bDQuNDA8LTUuNjI5IDEuMzM2IDIuMjkzLTQuNDA8IDUuNjI5LTEuMzM2LTIuMjkzem03LjUzNi0xNC43NzJsMiAyLTVoLTRsLTItMnYtNGwyIDJ2NE03MS40NjQgMTUuMTM2bDQuNDA8IDUuNjI5IDEuMzM2LTIuMjkzLTQuNDA8LTUuNjI5LTEuMzM2IDIuMjkzem0xMC41MzYgOS4zNjRscs-yLTItMi00djRoMnYyTDUwIDI5Ljg2NGwtNS44NjQgNC44NjQgNS44NjQgNC44NjQgOC44NjQtNi44NjQgOC44NjQgNi44NjQgNS44NjQtNC44NjR6Ii8+PC9nPjwvc3ZnPg==');
+            color: var(--ink-black);
+            font-family: "Sawarabi Mincho", "Hiragino Mincho ProN", serif;
+            margin: 0; padding: 0; line-height: 1.8; min-height: 100vh;
+            display: flex; flex-direction: column;
+        }
+
+        header {
+            display: flex; justify-content: space-between; align-items: center; padding: 20px 50px;
+            background-color: rgba(253, 250, 245, 0.95); border-bottom: 2px solid var(--accent-gold);
+            position: sticky; top: 0; z-index: 999; box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+        }
+
+        .logo-container { display: flex; align-items: center; gap: 15px; text-decoration: none; color: inherit; }
+        .logo-mark { font-size: 2.5rem; line-height: 1; color: var(--accent-red); }
+        .logo-text { display: flex; flex-direction: column; border-left: 1px solid var(--accent-gold); padding-left: 15px; }
+        .logo-main { font-size: 1.8rem; font-weight: bold; letter-spacing: 0.4rem; color: var(--deep-forest); }
+        .logo-sub { font-size: 0.75rem; letter-spacing: 0.15rem; color: var(--accent-gold); font-weight: bold; }
+
+        nav { display: flex; gap: 20px; }
+        .nav-btn {
+            padding: 8px 18px; border: 1px solid var(--accent-gold); background: none; cursor: pointer;
+            text-decoration: none; color: var(--ink-black); font-size: 0.95rem; transition: 0.3s;
+            border-radius: 4px; white-space: nowrap;
+        }
+        .nav-btn:hover { background-color: var(--accent-gold); color: white; }
+
+        .header-search-container { display: flex; align-items: center; gap: 10px; }
+        #site-search { padding: 8px 15px; width: 200px; border: 1px solid var(--accent-gold); background: rgba(255,255,255,0.7); outline: none; }
+
+        main { flex: 1; padding: 40px 50px; }
+        .search-header { max-width: 900px; margin: 0 auto 40px; border-bottom: 1px solid var(--accent-gold); padding-bottom: 20px; }
+        .search-header h1 { font-size: 1.8rem; color: var(--deep-forest); }
+        .results-container { max-width: 900px; margin: 0 auto; }
+
+        .result-item { padding: 20px 0; margin-bottom: 20px; border-bottom: 1px solid rgba(0,0,0,0.05); }
+        .result-title {
+            font-size: 1.4rem; color: var(--deep-forest); text-decoration: underline;
+            text-decoration-color: var(--accent-gold); font-weight: bold; display: inline-block; margin-bottom: 10px;
+        }
+        .result-title:hover { color: var(--accent-red); }
+        .result-text { font-size: 0.95rem; color: #555; display: block; }
+
+        .no-results {
+            text-align: center; padding: 60px 20px; background: white;
+            border: 1px dotted var(--accent-gold); color: var(--ink-black);
+        }
+
+        footer {
+            background-color: var(--deep-forest); color: rgba(255, 255, 255, 0.7);
+            padding: 20px 50px; font-size: 0.8rem; display: flex; justify-content: space-between;
+            align-items: center; border-top: 3px solid var(--accent-gold); margin-top: auto;
+        }
+    </style>
+</head>
+<body id="body-tag">
+
+<header>
+    <a href="toppage.html" class="logo-container">
+        <span class="logo-mark">⛩️</span>
+        <div class="logo-text">
+            <span class="logo-main" id="logo-main">和護の杜</span>
+            <span class="logo-sub" id="logo-sub">WAGO-NO-MORI</span>
+        </div>
+    </a>
+    <nav>
+        <a href="about.html" class="nav-btn">和護の杜とは</a>
+        <a href="performance.html" class="nav-btn">活動実績</a>
+        <a href="guidance.html" class="nav-btn">設立者のご指導</a>
+    </nav>
+    <div class="header-search-container">
+        <input type="text" id="site-search" placeholder="サイト内検索…">
+        <button class="nav-btn" onclick="executeSearch()" style="background: var(--deep-forest); color: white; border: none;">検索</button>
+    </div>
+</header>
+
+<main>
+    <div class="search-header">
+        <h1 id="header-display">「<span id="display-query"></span>」の検索結果</h1>
+    </div>
+
+    <div id="results-area" class="results-container"></div>
+</main>
+
+<footer>
+    <div class="footer-left">このサイトの内容はフィクションです。登場する人物・団体・名称等は架空であり、実在のものとは関係ありません。</div>
+</footer>
+
+<script>
+    const secretPages = [
+        {
+            title: "【研究資料】経常桜における視覚的共鳴と精神的安定の相関",
+            url: "keijozakura.html",
+            firstText: "1. 経常桜（けいじょうざくら）の定義",
+            keywords: ["経常桜", "研究資料", "【研究資料】"]
+        },
+        {
+            title: "【研究資料】聴神経変調技術による深層意識の同調プロセス",
+            url: "auditory-modulation.html",
+            firstText: "1. 聴神経変調技術の定義",
+            keywords: ["聴神経変調技術", "研究資料", "【研究資料】"]
+        },
+        {
+            title: "【研究資料】分子配列固定による物質構造の永続化",
+            url: "molecular-fixation.html",
+            firstText: "1. 分子配列固定技術の定義",
+            keywords: ["分子配列固定技術", "研究資料", "【研究資料】"]
+        },
+        {
+            title: "【研究資料】純正律動音源による精神の「正律化」",
+            url: "rhythm-source.html",
+            firstText: "1. 純正律動音源の定義",
+            keywords: ["純正律動音源", "研究資料", "【研究資料】"]
+        },
+        {
+            title: "【教典】和護真経 全文データ",
+            url: "shinkyo.html",
+            firstText: "和護真経",
+            keywords: ["和護真経"]
+        },
+        {
+            title: "純正律動音源（和音原盤）試聴用アーカイブ",
+            url: "waon-genban.html",
+            firstText: "【重要：秘匿保持上の措置】",
+            keywords: ["和音原盤"]
+        },
+        {
+            title: "広域意思疎通実験に関する最終報告",
+            url: "global-resonance-test.html",
+            firstText: "1. 実験の趣旨と背景",
+            keywords: ["広域意思疎通実験", "加納慎一郎"]
+        },
+        {
+            title: "有機物定常凍結理論に関する一考察",
+            url: "organic-stasis-theory.html",
+            firstText: "1. 理論の提唱：真の「日本の保存」",
+            keywords: ["有機物定常凍結理論","長谷川忠敬"]
+        },
+        {
+            title: "事案報告書：有機体定常化に伴う意識残留現象",
+            url: "mental-sequestration-incident.html",
+            firstText: "1. 事案の概要",
+            keywords: ["精神抑留事案", "長谷川忠敬"]
+        },
+        {
+            title: "波形強制同期理論に基づく基礎実験報告",
+            url: "waveform-synchronization-theory.html",
+            firstText: "1. 理論の概要",
+            keywords: ["波形強制同期理論","橋本賢治"]
+        },
+        {
+            title: "研究拡張申請書：波形強制同期理論",
+            url: "application-hashimoto.html",
+            firstText: "文書番号：SR-APP-1994-082",
+            keywords: ["橋本賢治"]
+        },
+        {
+            title: "職員個人用ファイル：加納 慎一郎",
+            url: "researcher-kano.html",
+            firstText: "管理番号：SR-PERSONNEL-004",
+            keywords: ["加納慎一郎"]
+        },
+        {
+            title: "職員個人用ファイル：長谷川 忠敬",
+            url: "researcher-hasegawa.html",
+            firstText: "管理番号：SR-PERSONNEL-005",
+            keywords: ["長谷川忠敬"]
+        },
+        {
+            title: "職員個人用ファイル：橋本 賢治",
+            url: "researcher-hashimoto.html",
+            firstText: "管理番号：SR-PERSONNEL-006",
+            keywords: ["橋本賢治"]
+        },
+        {
+            title: "職員個人用ファイル：東條 宗一",
+            url: "researcher-tojo.html",
+            firstText: "管理番号：SR-PERSONNEL-001",
+            keywords: ["東條宗一"]
+        },
+        {
+            title: "天照大神式発電施設：運用概要",
+            url: "facility-amaterasu.html",
+            firstText: "【画像】",
+            keywords: ["天照大神"]
+        },
+        {
+            title: "内部記録：神の恩寵と組織の再編",
+            url: "grace.html",
+            firstText: "1. 「神の恩寵」の定義",
+            keywords: ["神の恩寵"]
+        },
+        {
+            title: "機密：高次存在「神」の顕現理論概要",
+            url: "Sacred-Institute-of-Physical-and-Chemical-Research.html",
+            firstText: "1. 研究の背景",
+            keywords: ["神聖理化学研究所"]
+        },
+        {
+            title: "内部資料：神格顕現技術の体系的総括",
+            url: "theory-descent.html",
+            firstText: "1. 研究の変遷",
+            keywords: ["神格顕現技術"]
+        },
+        {
+            title: "実施要領：高千穂（タカチホ）計画",
+            url: "takatiho.html",
+            firstText: "1. 計画の趣旨",
+            keywords: ["高千穂計画"]
+        },
+        {
+            title: "実施要領：千五百秋（ちいおあき）計画",
+            url: "iwanaga.html",
+            firstText: "1. 計画の目的",
+            keywords: ["磐長姫"]
+        },
+        {
+            title: "高次エネルギー体の基礎定義",
+            url: "energy.html",
+            firstText: "1. 本質の定義",
+            keywords: ["高次エネルギー体"]
+        },
+        {
+            title: "高次エネルギー体の基礎定義",
+            url: "fixed-foundation.html",
+            firstText: "1. 本質の定義",
+            keywords: ["千五百秋式因果固定礎"]
+        }
+    ];
+
+    const params = new URLSearchParams(window.location.search);
+    const query = params.get('q') || "";
+    document.getElementById('display-query').innerText = query;
+
+    const resultsArea = document.getElementById('results-area');
+    const body = document.getElementById('body-tag');
+
+    if (query.trim() === "") {
+        showNoResults();
+    } else {
+        // --- 修正ポイント：完全一致、ただし「研究資料」のみ特例で一致させる ---
+        const filtered = secretPages.filter(p => 
+            p.keywords.some(k => k === query)
+        );
+
+        if (filtered.length > 0) {
+            // 背景変化のトリガー。機密ワードが含まれていれば発動
+            const triggerKeywords = ["千五百秋式因果固定礎", "高次エネルギー体", "磐長姫", "高千穂計画", "神格顕現技術", "神聖理化学研究所", "神の恩寵", "天照大神", "東條宗一", "橋本賢治","長谷川忠敬","加納慎一郎", "波形強制同期理論", "長谷川忠敬", "精神抑留事案", "有機物定常凍結理論", "広域意思疎通実験", "研究資料", "【研究資料】", "経常桜", "聴神経変調技術", "分子配列固定技術", "純正律動音源", "和音原盤", "和護真経"];
+            if (triggerKeywords.some(k => k === query)) {
+                body.classList.add('system-override');
+            }
+            displayResults(filtered);
+        } else {
+            showNoResults();
+        }
+    }
+
+    function displayResults(dataList) {
+        dataList.forEach(p => {
+            const div = document.createElement('div');
+            div.className = 'result-item';
+            div.innerHTML = `
+                <a href="${p.url}" class="result-title">${p.title}</a>
+                <span class="result-text">${p.firstText}</span>
+            `;
+            resultsArea.appendChild(div);
+        });
+    }
+
+    function showNoResults() {
+        resultsArea.innerHTML = `
+            <div class="no-results">
+                <p>お探しのページは見つかりませんでした。</p>
+                <p>入力したキーワードに誤りがないかご確認ください。</p>
+                <p style="font-size: 0.85rem; color: #888; margin-top: 15px;">※人名を検索する際は、苗字と名前の間にスペースを入れないでください。</p>
+            </div>
+        `;
+    }
+
+    function executeSearch() {
+        const val = document.getElementById('site-search').value;
+        if(val) window.location.href = `search.html?q=${encodeURIComponent(val)}`;
+    }
+
+    document.getElementById('site-search').addEventListener('keypress', function (e) {
+        if (e.key === 'Enter') executeSearch();
+    });
+</script>
+
+</body>
+</html>

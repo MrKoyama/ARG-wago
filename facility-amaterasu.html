@@ -1,0 +1,286 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>天照大神式発電施設：運用概要 - 和護の杜</title>
+    <style>
+        :root {
+            --glitch-bg: #080a08;
+            --glitch-gold: #b08d2d; 
+            --glitch-text: #c0ccc0; 
+            --glitch-green: #2a4d2a;
+            --accent-red: #cc3333;
+            --document-bg: #121612;
+            --photo-bg: #1a1a1a;
+        }
+
+        body {
+            background-color: var(--glitch-bg);
+            background-image: radial-gradient(circle, #151a15 1px, transparent 1px);
+            background-size: 40px 40px;
+            color: var(--glitch-text);
+            font-family: "Sawarabi Mincho", "Hiragino Mincho ProN", serif;
+            margin: 0;
+            padding: 0;
+            line-height: 2.0;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .redacted {
+            background-color: #000;
+            color: #000;
+            display: inline-block;
+            padding: 0 5px;
+            margin: 0 2px;
+            line-height: 1.2;
+            border-bottom: 1px solid var(--glitch-gold);
+            user-select: none;
+            cursor: help;
+        }
+
+        header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 20px 50px;
+            background-color: #0c0e0c;
+            border-bottom: 2px solid var(--glitch-gold);
+            position: sticky;
+            top: 0;
+            z-index: 999;
+        }
+
+        .logo-container { display: flex; align-items: center; gap: 15px; text-decoration: none; }
+        .logo-mark { font-size: 2.5rem; color: var(--accent-red); opacity: 0.7; }
+        .logo-text { display: flex; flex-direction: column; border-left: 1px solid var(--glitch-gold); padding-left: 15px; }
+        .logo-main { font-size: 1.8rem; font-weight: bold; letter-spacing: 0.4rem; color: var(--glitch-gold); }
+        .logo-sub { font-size: 0.75rem; letter-spacing: 0.15rem; color: #5a7a5a; font-weight: bold; }
+
+        nav { display: flex; gap: 20px; }
+        .nav-btn {
+            padding: 8px 18px;
+            border: 1px solid #3d523d;
+            background: none;
+            cursor: pointer;
+            text-decoration: none;
+            color: var(--glitch-text);
+            font-size: 0.95rem;
+            transition: 0.3s;
+            border-radius: 4px;
+            white-space: nowrap;
+        }
+        .nav-btn:hover { background-color: var(--glitch-gold); color: #000; }
+
+        .header-search-container { display: flex; align-items: center; gap: 10px; }
+        #site-search { 
+            padding: 8px 15px; 
+            width: 200px; 
+            border: 1px solid #3d523d; 
+            background: #151a15; 
+            color: #fff;
+            outline: none;
+        }
+
+        main { flex: 1; padding: 60px 20px; }
+        .document-area {
+            max-width: 900px;
+            margin: 0 auto;
+            background-color: var(--document-bg);
+            border: 1px solid #2a332a;
+            padding: 50px 60px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+            position: relative;
+        }
+
+        .document-title {
+            border-bottom: 2px solid var(--glitch-gold);
+            margin-bottom: 30px;
+            padding-bottom: 10px;
+        }
+        .document-title h1 {
+            font-size: 1.6rem;
+            color: var(--glitch-gold);
+            margin: 0;
+            text-align: center;
+            letter-spacing: 0.2rem;
+        }
+
+        .photo-frame {
+            position: relative;
+            margin-bottom: 40px;
+            border: 1px solid var(--glitch-gold);
+            padding: 10px;
+            background-color: rgba(176, 141, 45, 0.05);
+        }
+        .photo-area {
+            width: 100%; 
+            aspect-ratio: 3 / 2;
+            background-color: var(--photo-bg);
+            overflow: hidden;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+        .photo-area img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover; 
+            filter: grayscale(0.1) contrast(1.2);
+        }
+
+        .doc-section { margin-bottom: 40px; }
+        .doc-section h2 {
+            font-size: 1.2rem;
+            color: var(--glitch-gold);
+            border-left: 4px solid var(--glitch-gold);
+            padding-left: 15px;
+            margin-bottom: 20px;
+        }
+
+        .doc-text {
+            font-size: 1rem;
+            text-align: justify;
+            color: var(--glitch-text);
+            margin-bottom: 20px;
+        }
+
+        .doc-list {
+            list-style-type: none;
+            padding: 0;
+            margin: 0;
+        }
+        .doc-list li {
+            margin-bottom: 15px;
+            padding-left: 20px;
+            position: relative;
+        }
+        .doc-list li::before {
+            content: "▶";
+            color: var(--glitch-gold);
+            position: absolute;
+            left: 0;
+            font-size: 0.8rem;
+        }
+        .doc-list li strong {
+            color: var(--glitch-gold);
+            margin-right: 10px;
+        }
+
+        footer {
+            background-color: #000;
+            color: #b0c0b0;
+            padding: 20px 50px;
+            font-size: 0.8rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border-top: 3px solid var(--glitch-gold);
+            margin-top: auto;
+        }
+        .footer-left { flex: 1; }
+        .footer-right { font-family: monospace; letter-spacing: 1px; }
+
+    </style>
+</head>
+<body>
+
+<header>
+    <a href="toppage.html" class="logo-container">
+        <span class="logo-mark">⛩️</span>
+        <div class="logo-text">
+            <span class="logo-main">和護の杜</span>
+            <span class="logo-sub">WAGO-NO-MORI</span>
+        </div>
+    </a>
+    <nav>
+        <a href="about.html" class="nav-btn">和護の杜とは</a>
+        <a href="performance.html" class="nav-btn">活動実績</a>
+        <a href="guidance.html" class="nav-btn">設立者のご指導</a>
+    </nav>
+    <div class="header-search-container">
+        <input type="text" id="site-search" placeholder="サイト内検索…">
+        <button class="nav-btn" onclick="executeSearch()" style="background: var(--glitch-green); color: white; border: none;">検索</button>
+    </div>
+</header>
+
+<main>
+    <div class="document-area">
+        <div class="document-title">
+            <h1>天照大神式発電施設：運用概要</h1>
+        </div>
+
+        <div class="photo-frame">
+            <div class="photo-area">
+                <img src="images/amaterasu.png" alt="天照大神式発電施設">
+            </div>
+        </div>
+
+        <section class="doc-section">
+            <h2>1. 神威の繋留と技術革新</h2>
+            <p class="doc-text">
+                本施設は、<span class="redacted">神聖理化学研究所</span>最深部にて拘束下に置かれた太陽神「天照大神」より、その権能を定常的に抽出・変換する、和護の杜の技術的・経済的中核である。
+            </p>
+            <p class="doc-text">
+                この無限に近いエネルギーの活用を端緒として、学術界では「神の恩寵」と称される劇的な技術革命が発生し、従来の物理学では到達し得なかった高次演算や精神干渉技術が確立されるに至った。
+            </p>
+        </section>
+
+        <section class="doc-section">
+            <h2>2. エネルギーの活用と国家戦略</h2>
+            <p class="doc-text">
+                抽出されたエネルギーは、この技術革命がもたらした諸成果を具現化するための基盤として運用されている。莫大な出力は以下の戦略的分野に充てられ、国家の安寧を支えている。
+            </p>
+            <ul class="doc-list">
+                <li><strong>「経常桜」の維持：</strong> 全国に配置された端末へ安定供給。国民へ永続的な精神の平穏を供与する。</li>
+                <li><strong>独自技術の開発：</strong> 神の恩寵と呼ばれる一連の技術体系に基づき、不浄を排した次世代の研究を推進。</li>
+                <li><strong>諸外国への電力輸出：</strong> 圧倒的なエネルギー供給能力を背景に、国際社会における絶対的な覇権を維持。</li>
+                <li><strong>日本保護障壁の強化：</strong> 外部情報の流入を遮断し、清浄なる国土を守護する障壁の主動力。</li>
+            </ul>
+        </section>
+
+        <section class="doc-section" style="margin-bottom: 0;">
+            <h2>3. 秘匿管理と情報制限</h2>
+            <p class="doc-text">
+                本発電施設は、組織内においても最高機密に属する重要施設であり、その運用実態は極めて限定的な情報の非対称性によって守護されている。施設の物理的な内部構造、および神威抽出を司る基幹システムの詳細を把握しているのは、所長・東條宗一の認可を受けた極めて限定的なメンバーのみである。
+            </p>
+            <p class="doc-text">
+                どのような駆動アルゴリズムによってエネルギーが変換され、どのようなシステムで供給が制御されているかといった核心的情報は、一般職員への開示すら厳禁とされている。
+            </p>
+        </section>
+
+        <div style="text-align: right; margin-top: 40px; font-size: 0.9rem; color: #5a7a5a; font-family: monospace;">
+            文書番号：SR-FACILITY-2020<br>
+            最高管理責任者：東條 宗一
+        </div>
+    </div>
+</main>
+
+<footer>
+    <div class="footer-left">
+        このサイトの内容はフィクションです。登場する人物・団体・名称等は架空であり、実在のものとは関係ありません。
+    </div>
+    <div class="footer-right">
+        &lt; 20/28 &gt; (Lv.5)
+    </div>
+</footer>
+
+<script>
+    function executeSearch() {
+        const val = document.getElementById('site-search').value;
+        if (val) {
+            window.location.href = `search.html?q=${encodeURIComponent(val)}`;
+        }
+    }
+
+    document.getElementById('site-search').addEventListener('keypress', function (e) {
+        if (e.key === 'Enter') {
+            executeSearch();
+        }
+    });
+</script>
+
+</body>
+</html>

@@ -1,0 +1,260 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>千五百秋（ちいおあき）計画実施要領 - 和護の杜</title>
+    <style>
+        :root {
+            --glitch-bg: #080a08;
+            --glitch-gold: #b08d2d; 
+            --glitch-text: #c0ccc0; 
+            --glitch-green: #2a4d2a;
+            --accent-red: #cc3333;
+            --document-bg: #121612;
+            --photo-bg: #1a1a1a;
+        }
+
+        body {
+            background-color: var(--glitch-bg);
+            background-image: radial-gradient(circle, #151a15 1px, transparent 1px);
+            background-size: 40px 40px;
+            color: var(--glitch-text);
+            font-family: "Sawarabi Mincho", "Hiragino Mincho ProN", serif;
+            margin: 0;
+            padding: 0;
+            line-height: 2.0;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+        }
+
+        header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 20px 50px;
+            background-color: #0c0e0c;
+            border-bottom: 2px solid var(--glitch-gold);
+            position: sticky;
+            top: 0;
+            z-index: 999;
+        }
+
+        .logo-container { display: flex; align-items: center; gap: 15px; text-decoration: none; }
+        .logo-mark { font-size: 2.5rem; color: var(--accent-red); opacity: 0.7; }
+        .logo-text { display: flex; flex-direction: column; border-left: 1px solid var(--glitch-gold); padding-left: 15px; }
+        .logo-main { font-size: 1.8rem; font-weight: bold; letter-spacing: 0.4rem; color: var(--glitch-gold); }
+        .logo-sub { font-size: 0.75rem; letter-spacing: 0.15rem; color: #5a7a5a; font-weight: bold; }
+
+        nav { display: flex; gap: 20px; }
+        .nav-btn {
+            padding: 8px 18px;
+            border: 1px solid #3d523d;
+            background: none;
+            cursor: pointer;
+            text-decoration: none;
+            color: var(--glitch-text);
+            font-size: 0.95rem;
+            transition: 0.3s;
+            border-radius: 4px;
+            white-space: nowrap;
+        }
+        .nav-btn:hover { background-color: var(--glitch-gold); color: #000; }
+
+        .header-search-container { display: flex; align-items: center; gap: 10px; }
+        #site-search { 
+            padding: 8px 15px; 
+            width: 200px; 
+            border: 1px solid #3d523d; 
+            background: #151a15; 
+            color: #fff;
+            outline: none;
+        }
+
+        main { flex: 1; padding: 60px 20px; }
+        .document-area {
+            max-width: 900px;
+            margin: 0 auto;
+            background-color: var(--document-bg);
+            border: 1px solid #2a332a;
+            padding: 50px 60px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+            position: relative;
+        }
+
+        .document-title {
+            border-bottom: 2px solid var(--glitch-gold);
+            margin-bottom: 30px;
+            padding-bottom: 10px;
+        }
+        .document-title h1 {
+            font-size: 1.6rem;
+            color: var(--glitch-gold);
+            margin: 0;
+            text-align: center;
+            letter-spacing: 0.2rem;
+        }
+
+        .doc-section { margin-bottom: 40px; }
+        .doc-section h2 {
+            font-size: 1.2rem;
+            color: var(--glitch-gold);
+            border-left: 4px solid var(--glitch-gold);
+            padding-left: 15px;
+            margin-bottom: 20px;
+        }
+
+        .doc-text {
+            font-size: 1rem;
+            text-align: justify;
+            color: var(--glitch-text);
+            margin-bottom: 20px;
+        }
+
+        .procedure-box {
+            background-color: rgba(0, 0, 0, 0.3);
+            border: 1px solid #2a332a;
+            padding: 25px;
+            margin: 20px 0;
+        }
+        .step {
+            margin-bottom: 25px;
+        }
+        .step-title {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            color: var(--glitch-gold);
+            font-weight: bold;
+            margin-bottom: 10px;
+        }
+        .step-number {
+            background-color: var(--glitch-gold);
+            color: #000;
+            padding: 0 8px;
+            font-size: 0.9rem;
+        }
+
+        footer {
+            background-color: #000;
+            color: #b0c0b0;
+            padding: 20px 50px;
+            font-size: 0.8rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border-top: 3px solid var(--glitch-gold);
+            margin-top: auto;
+        }
+        .footer-left { flex: 1; }
+        .footer-right { font-family: monospace; letter-spacing: 1px; }
+
+    </style>
+</head>
+<body>
+
+<header>
+    <a href="toppage.html" class="logo-container">
+        <span class="logo-mark">⛩️</span>
+        <div class="logo-text">
+            <span class="logo-main">和護の杜</span>
+            <span class="logo-sub">WAGO-NO-MORI</span>
+        </div>
+    </a>
+    <nav>
+        <a href="about.html" class="nav-btn">和護の杜とは</a>
+        <a href="performance.html" class="nav-btn">活動実績</a>
+        <a href="guidance.html" class="nav-btn">設立者のご指導</a>
+    </nav>
+    <div class="header-search-container">
+        <input type="text" id="site-search" placeholder="サイト内検索…">
+        <button class="nav-btn" onclick="executeSearch()" style="background: var(--glitch-green); color: white; border: none;">検索</button>
+    </div>
+</header>
+
+<main>
+    <div class="document-area">
+        <div class="document-title">
+            <h1>実施要領：千五百秋（ちいおあき）計画</h1>
+        </div>
+
+        <section class="doc-section">
+            <h2>1. 計画の目的</h2>
+            <p class="doc-text">
+                本計画は、高次元階層において「静止・定着・不変」の特性を示す<strong>高次エネルギー体</strong>を物理階層へ固定することを目的とする。本計画は、高千穂計画にて確保した動的エネルギーを制御するための「安定化触媒」としてこのエネルギー体を導入し、絶対的な安寧の土台を構築するものである。
+            </p>
+        </section>
+
+        <section class="doc-section">
+            <h2>2. 執行プロセス</h2>
+            <p class="doc-text">
+                「神」という情報の皮膜を剥ぎ取り、その核となるエネルギーを工学的に処理する手順を以下に示す。
+            </p>
+            
+            <div class="procedure-box">
+                <div class="step">
+                    <div class="step-title"><span class="step-number">01</span> 位相の特定</div>
+                    <p class="doc-text" style="font-size: 0.95rem; margin-left: 10px;">
+                        富士山を中心とする深層磁場を走査。地殻深部に残留する低周波位相を、特定の高次エネルギー体を導くためのレシーバーとして運用し、その所在を特定する。
+                    </p>
+                </div>
+
+                <div class="step">
+                    <div class="step-title"><span class="step-number">02</span> 空間の置換</div>
+                    <p class="doc-text" style="font-size: 0.95rem; margin-left: 10px;">
+                        顕現したエネルギー体を、現世の堅牢な物質を依代として繋ぎ止める。対象空間の物理定数を、このエネルギー体が持つ「不変・静止」の属性で強制的に上書きすることで、物理的な定着を完遂させる。
+                    </p>
+                </div>
+
+                <div class="step">
+                    <div class="step-title"><span class="step-number">03</span> 構造の定着</div>
+                    <p class="doc-text" style="font-size: 0.95rem; margin-left: 10px;">
+                        抽出・固定されたエネルギーを「経常桜」のネットワークを介して全国へ転送。各インフラの構造材に同期させることで、経年劣化や外的破壊要因を因果レベルで無効化し、国土全体を「不変のシステム」へと変貌させる。
+                    </p>
+                </div>
+            </div>
+        </section>
+
+        <section class="doc-section">
+            <h2>3. エネルギー体の相補運用</h2>
+            <p class="doc-text">
+                高千穂計画（天照大神：動的・発散型エネルギー）と、千五百秋計画（磐長：静的・収束型エネルギー）を統合運用することにより、理想的な出力バランスが実現する。和護の杜は、これらの高次リソースを適宜「神格」として擬装・提供することで、国民に精神的な納得感を与えつつ、その実態として完全な構造的安寧を管理下に置く。
+            </p>
+        </section>
+
+        <section class="doc-section" style="margin-bottom: 0;">
+            <h2>4. 留意事項</h2>
+            <p class="doc-text">
+                高次エネルギー体の定着に伴う時空の歪曲は、物理法則の「硬化」を招く。執行区域周辺における生命活動の遅延や感覚の麻痺は想定の範囲内であるが、これらが「神の祟り」等として不適切に解釈されることを防ぐため、情報の隠蔽を徹底すること。
+            </p>
+        </section>
+    </div>
+</main>
+
+<footer>
+    <div class="footer-left">
+        このサイトの内容はフィクションです。登場する人物・団体・名称等は架空であり、実在のものとは関係ありません。
+    </div>
+    <div class="footer-right">
+        &lt; 25/28 &gt; (Lv.6)
+    </div>
+</footer>
+
+<script>
+    function executeSearch() {
+        const val = document.getElementById('site-search').value;
+        if (val) {
+            window.location.href = `search.html?q=${encodeURIComponent(val)}`;
+        }
+    }
+
+    document.getElementById('site-search').addEventListener('keypress', function (e) {
+        if (e.key === 'Enter') {
+            executeSearch();
+        }
+    });
+</script>
+
+</body>
+</html>

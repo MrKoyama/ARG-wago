@@ -1,0 +1,330 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>職員個人用ファイル：加納 慎一郎 - 和護の杜</title>
+    <style>
+        :root {
+            --glitch-bg: #080a08;
+            --glitch-gold: #b08d2d; 
+            --glitch-text: #c0ccc0; 
+            --glitch-green: #2a4d2a;
+            --accent-red: #cc3333;
+            --document-bg: #121612;
+            --photo-bg: #1a1a1a;
+        }
+
+        body {
+            background-color: var(--glitch-bg);
+            background-image: radial-gradient(circle, #151a15 1px, transparent 1px);
+            background-size: 40px 40px;
+            color: var(--glitch-text);
+            font-family: "Sawarabi Mincho", "Hiragino Mincho ProN", serif;
+            margin: 0;
+            padding: 0;
+            line-height: 2.0;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .redacted {
+            background-color: #000;
+            color: #000;
+            display: inline-block;
+            padding: 0 5px;
+            margin: 0 2px;
+            line-height: 1.2;
+            border-bottom: 1px solid var(--glitch-gold);
+            user-select: none;
+            cursor: help;
+        }
+
+        header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 20px 50px;
+            background-color: #0c0e0c;
+            border-bottom: 2px solid var(--glitch-gold);
+            position: sticky;
+            top: 0;
+            z-index: 999;
+        }
+
+        .logo-container { display: flex; align-items: center; gap: 15px; text-decoration: none; }
+        .logo-mark { font-size: 2.5rem; color: var(--accent-red); opacity: 0.7; }
+        .logo-text { display: flex; flex-direction: column; border-left: 1px solid var(--glitch-gold); padding-left: 15px; }
+        .logo-main { font-size: 1.8rem; font-weight: bold; letter-spacing: 0.4rem; color: var(--glitch-gold); }
+        .logo-sub { font-size: 0.75rem; letter-spacing: 0.15rem; color: #5a7a5a; font-weight: bold; }
+
+        nav { display: flex; gap: 20px; }
+        .nav-btn {
+            padding: 8px 18px;
+            border: 1px solid #3d523d;
+            background: none;
+            cursor: pointer;
+            text-decoration: none;
+            color: var(--glitch-text);
+            font-size: 0.95rem;
+            transition: 0.3s;
+            border-radius: 4px;
+            white-space: nowrap;
+        }
+        .nav-btn:hover { background-color: var(--glitch-gold); color: #000; }
+
+        .header-search-container { display: flex; align-items: center; gap: 10px; }
+        #site-search { 
+            padding: 8px 15px; 
+            width: 200px; 
+            border: 1px solid #3d523d; 
+            background: #151a15; 
+            color: #fff;
+            outline: none;
+        }
+
+        main { flex: 1; padding: 60px 20px; }
+        .document-area {
+            max-width: 900px;
+            margin: 0 auto;
+            background-color: var(--document-bg);
+            border: 1px solid #2a332a;
+            padding: 50px 60px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+            position: relative;
+        }
+
+        .document-title {
+            border-bottom: 2px solid var(--glitch-gold);
+            margin-bottom: 30px;
+            padding-bottom: 10px;
+        }
+        .document-title h1 {
+            font-size: 1.6rem;
+            color: var(--glitch-gold);
+            margin: 0;
+            text-align: center;
+            letter-spacing: 0.2rem;
+        }
+
+        .document-meta {
+            font-size: 0.9rem;
+            margin-bottom: 30px;
+            color: #8a9a8a;
+            display: flex;
+            flex-direction: column;
+            gap: 5px;
+            border-bottom: 1px solid #2a332a;
+            padding-bottom: 15px;
+        }
+
+        .profile-container {
+            display: flex;
+            gap: 40px;
+            margin-bottom: 40px;
+            align-items: stretch;
+        }
+
+        .photo-area {
+            width: 250px; 
+            background-color: var(--photo-bg);
+            border: 1px solid var(--glitch-gold);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            position: relative;
+            overflow: hidden;
+            flex-shrink: 0;
+        }
+        .photo-area img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover; 
+            filter: grayscale(0.2) contrast(1.1);
+        }
+
+        .info-area {
+            flex: 1;
+        }
+        .profile-table {
+            width: 100%;
+            height: 100%;
+            border-collapse: collapse;
+            table-layout: fixed;
+        }
+        .profile-table th, .profile-table td {
+            border: 1px solid #2a332a;
+            padding: 10px 15px;
+            text-align: left;
+            font-size: 0.95rem;
+            vertical-align: middle;
+        }
+        .profile-table th {
+            background-color: rgba(176, 141, 45, 0.05);
+            color: var(--glitch-gold);
+            width: 120px;
+        }
+
+        .doc-section { margin-bottom: 40px; }
+        .doc-section h2 {
+            font-size: 1.2rem;
+            color: var(--glitch-gold);
+            border-left: 4px solid var(--glitch-gold);
+            padding-left: 15px;
+            margin-bottom: 20px;
+        }
+
+        .doc-text, .doc-list {
+            font-size: 1rem;
+            text-align: justify;
+            color: var(--glitch-text);
+        }
+        .doc-list {
+            list-style-type: none;
+            padding: 0;
+            margin: 0;
+        }
+        .doc-list li {
+            margin-bottom: 10px;
+            padding-left: 20px;
+            position: relative;
+        }
+        .doc-list li::before {
+            content: "▶";
+            color: var(--glitch-gold);
+            position: absolute;
+            left: 0;
+            font-size: 0.8rem;
+        }
+
+        footer {
+            background-color: #000;
+            color: #b0c0b0;
+            padding: 20px 50px;
+            font-size: 0.8rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border-top: 3px solid var(--glitch-gold);
+            margin-top: auto;
+        }
+        .footer-left { flex: 1; }
+        .footer-right { font-family: monospace; letter-spacing: 1px; }
+
+    </style>
+</head>
+<body>
+
+<header>
+    <a href="toppage.html" class="logo-container">
+        <span class="logo-mark">⛩️</span>
+        <div class="logo-text">
+            <span class="logo-main">和護の杜</span>
+            <span class="logo-sub">WAGO-NO-MORI</span>
+        </div>
+    </a>
+    <nav>
+        <a href="about.html" class="nav-btn">和護の杜とは</a>
+        <a href="performance.html" class="nav-btn">活動実績</a>
+        <a href="guidance.html" class="nav-btn">設立者のご指導</a>
+    </nav>
+    <div class="header-search-container">
+        <input type="text" id="site-search" placeholder="サイト内検索…">
+        <button class="nav-btn" onclick="executeSearch()" style="background: var(--glitch-green); color: white; border: none;">検索</button>
+    </div>
+</header>
+
+<main>
+    <div class="document-area">
+        <div class="document-title">
+            <h1>職員個人用ファイル：加納 慎一郎</h1>
+        </div>
+
+        <div class="document-meta">
+            <span>管理番号：SR-PERSONNEL-004</span>
+            <span>最終更新：1999年01月15日</span>
+        </div>
+
+        <div class="profile-container">
+            <div class="photo-area">
+                <img src="images/kano.png" alt="加納 慎一郎 顔写真">
+            </div>
+
+            <div class="info-area">
+                <table class="profile-table">
+                    <tr>
+                        <th>氏名</th>
+                        <td>加納 慎一郎</td>
+                    </tr>
+                    <tr>
+                        <th>生年月日</th>
+                        <td>1953年07月26日</td>
+                    </tr>
+                    <tr>
+                        <th>物理的特徴</th>
+                        <td>178cm / 65kg</td>
+                    </tr>
+                    <tr>
+                        <th>所属</th>
+                        <td><span class="redacted">第一研究所</span>（精神工学部門）</td>
+                    </tr>
+                    <tr>
+                        <th>職位</th>
+                        <td>主任研究員</td>
+                    </tr>
+                    <tr>
+                        <th>専門分野</th>
+                        <td>精神工学、集団心理</td>
+                    </tr>
+                </table>
+            </div>
+        </div>
+
+        <section class="doc-section">
+            <h2>1. 主な担当領域</h2>
+            <ul class="doc-text doc-list">
+                <li><strong>脳波同調システムの構築：</strong> 特定の周波数を用い、精神を外部から調整する技術の実用化。</li>
+                <li><strong>意識形成のメカニズム解析：</strong> 人の感情や思考がどのような神経プロセスで発生するかを研究。個人の主観的体験をデータとして抽出し、外部から再定義するための基礎理論を確立。</li>
+                <li><strong>精神干渉技術：</strong> 特定思想の効率的な定着手法の研究。将来的に、既存の価値観を一時的に無効化し、特定の教義を深層心理へ強制的に刷り込むことが可能になると提言。</li>
+            </ul>
+        </section>
+
+        <section class="doc-section" style="margin-bottom: 0;">
+            <h2>2. キャリア要約</h2>
+            <ul class="doc-text doc-list">
+                <li><strong>1976年03月：</strong> <span class="redacted">聖理科</span>大学医学部 を卒業。</li>
+                <li><strong>1976年04月：</strong> <span class="redacted">聖理科</span>大学付属病院 精神科勤務。</li>
+                <li><strong>1980年01月：</strong> <span class="redacted">神聖理化学研究所</span> 入所。</li>
+                <li><strong>1987年04月：</strong> <span class="redacted">第一研究所</span> 主任研究員に昇格。</li>
+            </ul>
+        </section>
+    </div>
+</main>
+
+<footer>
+    <div class="footer-left">
+        このサイトの内容はフィクションです。登場する人物・団体・名称等は架空であり、実在のものとは関係ありません。
+    </div>
+    <div class="footer-right">
+        &lt; 15/28 &gt; (Lv.4)
+    </div>
+</footer>
+
+<script>
+    function executeSearch() {
+        const val = document.getElementById('site-search').value;
+        if (val) {
+            window.location.href = `search.html?q=${encodeURIComponent(val)}`;
+        }
+    }
+
+    document.getElementById('site-search').addEventListener('keypress', function (e) {
+        if (e.key === 'Enter') {
+            executeSearch();
+        }
+    });
+</script>
+
+</body>
+</html>

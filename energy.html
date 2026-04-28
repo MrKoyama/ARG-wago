@@ -1,0 +1,231 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>高次エネルギー体の定義について - 和護の杜</title>
+    <style>
+        :root {
+            --glitch-bg: #080a08;
+            --glitch-gold: #b08d2d; 
+            --glitch-text: #c0ccc0; 
+            --glitch-green: #2a4d2a;
+            --accent-red: #cc3333;
+            --document-bg: #121612;
+            --photo-bg: #1a1a1a;
+        }
+
+        body {
+            background-color: var(--glitch-bg);
+            background-image: radial-gradient(circle, #151a15 1px, transparent 1px);
+            background-size: 40px 40px;
+            color: var(--glitch-text);
+            font-family: "Sawarabi Mincho", "Hiragino Mincho ProN", serif;
+            margin: 0;
+            padding: 0;
+            line-height: 2.0;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+        }
+
+        header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 20px 50px;
+            background-color: #0c0e0c;
+            border-bottom: 2px solid var(--glitch-gold);
+            position: sticky;
+            top: 0;
+            z-index: 999;
+        }
+
+        .logo-container { display: flex; align-items: center; gap: 15px; text-decoration: none; }
+        .logo-mark { font-size: 2.5rem; color: var(--accent-red); opacity: 0.7; }
+        .logo-text { display: flex; flex-direction: column; border-left: 1px solid var(--glitch-gold); padding-left: 15px; }
+        .logo-main { font-size: 1.8rem; font-weight: bold; letter-spacing: 0.4rem; color: var(--glitch-gold); }
+        .logo-sub { font-size: 0.75rem; letter-spacing: 0.15rem; color: #5a7a5a; font-weight: bold; }
+
+        nav { display: flex; gap: 20px; }
+        .nav-btn {
+            padding: 8px 18px;
+            border: 1px solid #3d523d;
+            background: none;
+            cursor: pointer;
+            text-decoration: none;
+            color: var(--glitch-text);
+            font-size: 0.95rem;
+            transition: 0.3s;
+            border-radius: 4px;
+            white-space: nowrap;
+        }
+        .nav-btn:hover { background-color: var(--glitch-gold); color: #000; }
+
+        .header-search-container { display: flex; align-items: center; gap: 10px; }
+        #site-search { 
+            padding: 8px 15px; 
+            width: 200px; 
+            border: 1px solid #3d523d; 
+            background: #151a15; 
+            color: #fff;
+            outline: none;
+        }
+
+        main { flex: 1; padding: 60px 20px; }
+        .document-area {
+            max-width: 900px;
+            margin: 0 auto;
+            background-color: var(--document-bg);
+            border: 1px solid #2a332a;
+            padding: 50px 60px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+            position: relative;
+        }
+
+        .document-title {
+            border-bottom: 2px solid var(--glitch-gold);
+            margin-bottom: 30px;
+            padding-bottom: 10px;
+        }
+        .document-title h1 {
+            font-size: 1.6rem;
+            color: var(--glitch-gold);
+            margin: 0;
+            text-align: center;
+            letter-spacing: 0.2rem;
+        }
+
+        .doc-section { margin-bottom: 40px; }
+        .doc-section h2 {
+            font-size: 1.2rem;
+            color: var(--glitch-gold);
+            border-left: 4px solid var(--glitch-gold);
+            padding-left: 15px;
+            margin-bottom: 20px;
+        }
+
+        .doc-text {
+            font-size: 1rem;
+            text-align: justify;
+            color: var(--glitch-text);
+            margin-bottom: 20px;
+        }
+
+        .focus-box {
+            border: 1px solid #3d523d;
+            padding: 20px;
+            margin: 25px 0;
+            background-color: rgba(0, 0, 0, 0.2);
+            font-size: 0.95rem;
+        }
+
+        footer {
+            background-color: #000;
+            color: #b0c0b0;
+            padding: 20px 50px;
+            font-size: 0.8rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border-top: 3px solid var(--glitch-gold);
+            margin-top: auto;
+        }
+        .footer-left { flex: 1; }
+        .footer-right { font-family: monospace; letter-spacing: 1px; }
+
+    </style>
+</head>
+<body>
+
+<header>
+    <a href="toppage.html" class="logo-container">
+        <span class="logo-mark">⛩️</span>
+        <div class="logo-text">
+            <span class="logo-main">和護の杜</span>
+            <span class="logo-sub">WAGO-NO-MORI</span>
+        </div>
+    </a>
+    <nav>
+        <a href="about.html" class="nav-btn">和護の杜とは</a>
+        <a href="performance.html" class="nav-btn">活動実績</a>
+        <a href="guidance.html" class="nav-btn">設立者のご指導</a>
+    </nav>
+    <div class="header-search-container">
+        <input type="text" id="site-search" placeholder="サイト内検索…">
+        <button class="nav-btn" onclick="executeSearch()" style="background: var(--glitch-green); color: white; border: none;">検索</button>
+    </div>
+</header>
+
+<main>
+    <div class="document-area">
+        <div class="document-title">
+            <h1>高次エネルギー体の基礎定義</h1>
+        </div>
+
+        <section class="doc-section">
+            <h2>1. 本質の定義</h2>
+            <p class="doc-text">
+                「高次エネルギー体」とは、我々が便宜上「神」と呼称してきた存在の物理的実体である。これらは意志や感情を有する生命体ではなく、高次元階層において特定の指向性を持った「純粋な力場」として定義される。
+            </p>
+        </section>
+
+        <section class="doc-section">
+            <h2>2. 物理的特性と現象</h2>
+            <p class="doc-text">
+                これらのエネルギー体は、固有の位相波形によってその属性が決定される。熱量や光を供給する発散型、物質を硬化させ固定する収束型など、物理世界への干渉はすべてエネルギー代謝の一形態として説明可能である。
+            </p>
+            <p class="doc-text">
+                信仰心や祈りといった精神活動は、これらのエネルギー体と物理階層を繋ぐための「位相調整」の役割を果たしており、これを用いることで工学的な抽出・加工・利用が可能となる。
+            </p>
+        </section>
+
+        <section class="doc-section">
+            <h2>3. 社会実装と現行稼働システム</h2>
+            <p class="doc-text">
+                当組織は、確保した高次エネルギー体を特定の神格プロトコルへ変換し、以下の社会基盤システムとして既に実戦配備・運用している。
+            </p>
+            
+            <div class="focus-box">
+                <strong>■ 天照大神式発電施設</strong><br>
+                放出属性を持つ波形を熱力学エネルギーへ直接変換する基幹施設。現在、国内の主要電力網の約40%をこのシステムで賄っており、理論上、燃料補給を必要としない永続的なエネルギー供給を実現している。
+            </div>
+
+            <div class="focus-box">
+                <strong>■ 千五百秋式因果固定礎</strong><br>
+                「磐長姫」の波形を用いた物理干渉装置。天照大神式の高出力に伴う時空のゆらぎを抑制・安定化させると同時に、日本全土の重要地殻およびインフラ構造体を「不変」の状態へ固定する。これにより、経年劣化や大規模災害による物理的損壊を理論上完全に無効化する。
+            </div>
+
+            <p class="doc-text">
+                和護の杜が掲げる日本の永久保存という理念は、これら「天照大神」と「磐長姫」の両システムを統合運用することによって実施される予定である。
+            </p>
+        </section>
+    </div>
+</main>
+
+<footer>
+    <div class="footer-left">
+        このサイトの内容はフィクションです。登場する人物・団体・名称等は架空であり、実在のものとは関係ありません。
+    </div>
+    <div class="footer-right">
+        &lt; 26/28 &gt; (Lv.7)
+    </div>
+</footer>
+
+<script>
+    function executeSearch() {
+        const val = document.getElementById('site-search').value;
+        if (val) {
+            window.location.href = `search.html?q=${encodeURIComponent(val)}`;
+        }
+    }
+
+    document.getElementById('site-search').addEventListener('keypress', function (e) {
+        if (e.key === 'Enter') {
+            executeSearch();
+        }
+    });
+</script>
+
+</body>
+</html>
