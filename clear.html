@@ -4,14 +4,25 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>CONGRATULATIONS! - 調査完了</title>
-    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@300;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Sawarabi+Mincho&display=swap" rel="stylesheet">
     <style>
+        :root {
+            --glitch-bg: #080a08;
+            --glitch-gold: #b08d2d; 
+            --glitch-text: #c0ccc0; 
+            --accent-red: #cc3333;
+        }
+
         body {
             margin: 0;
             padding: 0;
-            font-family: 'Noto Sans JP', sans-serif;
-            background: linear-gradient(135deg, #e0f2f1 0%, #ffffff 100%);
-            color: #333;
+            font-family: "Sawarabi Mincho", serif;
+            background-color: var(--glitch-bg);
+            background-image: 
+                radial-gradient(circle at 50% 50%, rgba(176, 141, 45, 0.1) 0%, transparent 80%),
+                radial-gradient(circle, #151a15 1px, transparent 1px);
+            background-size: 100% 100%, 40px 40px;
+            color: var(--glitch-text);
             display: flex;
             justify-content: center;
             align-items: center;
@@ -19,128 +30,183 @@
             overflow: hidden;
         }
 
+        /* 和風の背景装飾 */
+        .washi-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            opacity: 0.05;
+            pointer-events: none;
+            background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="100" height="100" viewBox="0 0 100 100"><path d="M50 0 L100 50 L50 100 L0 50 Z" fill="white"/></svg>');
+            background-size: 50px 50px;
+        }
+
         .clear-card {
-            background: rgba(255, 255, 255, 0.9);
-            padding: 60px 80px;
-            border-radius: 20px;
-            box-shadow: 0 20px 50px rgba(0, 150, 136, 0.1);
+            background: rgba(18, 22, 18, 0.9);
+            padding: 60px 40px;
+            border: 1px solid var(--glitch-gold);
             text-align: center;
-            max-width: 600px;
+            max-width: 700px;
             width: 90%;
             position: relative;
-            animation: slideUp 1s ease-out;
+            box-shadow: 0 0 50px rgba(0, 0, 0, 0.8), inset 0 0 20px rgba(176, 141, 45, 0.2);
+            animation: fadeIn 2s ease-out;
         }
 
-        @keyframes slideUp {
-            from { opacity: 0; transform: translateY(30px); }
-            to { opacity: 1; transform: translateY(0); }
+        @keyframes fadeIn {
+            from { opacity: 0; transform: scale(0.95); filter: blur(10px); }
+            to { opacity: 1; transform: scale(1); filter: blur(0); }
         }
+
+        /* 門のような装飾 */
+        .clear-card::before, .clear-card::after {
+            content: "";
+            position: absolute;
+            width: 20px;
+            height: 20px;
+            border: 2px solid var(--glitch-gold);
+        }
+        .clear-card::before { top: 15px; left: 15px; border-right: none; border-bottom: none; }
+        .clear-card::after { bottom: 15px; right: 15px; border-left: none; border-top: none; }
 
         h1 {
-            color: #009688;
-            font-size: 2.5rem;
-            margin-bottom: 10px;
-            letter-spacing: 0.1rem;
+            color: var(--glitch-gold);
+            font-size: 2.2rem;
+            margin-bottom: 30px;
+            letter-spacing: 0.5rem;
+            text-shadow: 0 0 15px rgba(176, 141, 45, 0.5);
         }
 
-        .badge {
-            font-size: 5rem;
-            margin-bottom: 20px;
-            display: inline-block;
-            animation: bounce 2s infinite;
+        .seal {
+            width: 100px;
+            height: 100px;
+            margin: 0 auto 30px;
+            border: 3px double var(--accent-red);
+            border-radius: 50%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            color: var(--accent-red);
+            font-weight: bold;
+            font-size: 1.2rem;
+            transform: rotate(-15deg);
+            animation: stamp 0.5s cubic-bezier(.17,.67,.12,1.5) forwards;
+            opacity: 0;
         }
 
-        @keyframes bounce {
-            0%, 20%, 50%, 80%, 100% {transform: translateY(0);}
-            40% {transform: translateY(-20px);}
-            60% {transform: translateY(-10px);}
+        @keyframes stamp {
+            0% { transform: scale(5) rotate(0deg); opacity: 0; }
+            100% { transform: scale(1) rotate(-15deg); opacity: 0.8; }
         }
 
         p {
-            line-height: 1.8;
-            font-size: 1.1rem;
+            line-height: 2.2;
+            font-size: 1.05rem;
             margin-bottom: 30px;
+            color: var(--glitch-text);
         }
 
         .highlight {
-            color: #00796b;
-            font-weight: 700;
+            color: var(--glitch-gold);
+            display: block;
+            margin-top: 20px;
+            font-size: 1.2rem;
         }
 
         .back-home {
             display: inline-block;
-            padding: 15px 40px;
-            background-color: #009688;
-            color: white;
+            margin-top: 20px;
+            padding: 12px 40px;
+            border: 1px solid var(--glitch-gold);
+            background: transparent;
+            color: var(--glitch-gold);
             text-decoration: none;
-            border-radius: 50px;
-            font-weight: bold;
-            transition: 0.3s;
-            box-shadow: 0 4px 15px rgba(0, 144, 131, 0.3);
+            transition: 0.4s;
+            letter-spacing: 0.2rem;
+            position: relative;
+            overflow: hidden;
         }
 
         .back-home:hover {
-            background-color: #00796b;
-            transform: scale(1.05);
+            background: var(--glitch-gold);
+            color: #000;
+            box-shadow: 0 0 20px rgba(176, 141, 45, 0.4);
         }
 
-        .decoration {
+        /* ノイズ演出用 */
+        .scanline {
+            width: 100%;
+            height: 2px;
+            background: rgba(192, 204, 192, 0.1);
             position: absolute;
-            z-index: -1;
-            border-radius: 50%;
-            background: rgba(0, 150, 136, 0.05);
+            top: 0;
+            left: 0;
+            animation: scan 4s linear infinite;
+        }
+
+        @keyframes scan {
+            0% { top: 0; }
+            100% { top: 100%; }
         }
     </style>
 </head>
 <body>
 
-    <div class="decoration" style="width: 300px; height: 300px; top: -100px; left: -100px;"></div>
-    <div class="decoration" style="width: 200px; height: 200px; bottom: -50px; right: -50px;"></div>
+    <div class="washi-overlay"></div>
 
     <div class="clear-card">
-        <div class="badge">🎉</div>
-        <h1>ARG CLEAR!</h1>
+        <div class="scanline"></div>
+        <div class="seal">調査完了<br>御免</div>
+        
+        <h1>全真相解明</h1>
+        
         <p>
-            お疲れ様でした！<br>
-            「和護の杜」に隠されたすべての真実を解き明かし、<br>
-            無事に調査を完了しました。
-        </p>
-        <p>
-            東條宗一の計画を最後まで見届けたあなたに、<br>
-            最大限の敬意を表します。<br>
-            <span class="highlight">プレイしていただき、ありがとうございました！</span>
+            お疲れ様でした。<br>
+            「和護の杜」の深淵に隠された因果をすべて解き明かし、<br>
+            レベル8の機密情報にたどり着きました。
         </p>
         
-        <a href="toppage.html" class="back-home">最初のページに戻る</a>
+        <p>
+            東條宗一が描いた「日本の永久保存」の一部始終を見届けた、<br>
+            稀有な観測者であるあなたに最大の敬意を。<br>
+            <span class="highlight">ご協力、誠にありがとうございました。</span>
+        </p>
+        
+        <a href="toppage.html" class="back-home">表界へ戻る</a>
     </div>
 
     <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.5.1/dist/confetti.browser.min.js"></script>
     <script>
-        // ページ読み込み時に紙吹雪を飛ばす
         window.onload = function() {
-            var duration = 3 * 1000;
-            var end = Date.now() + duration;
+            // 金色の紙吹雪を控えめに飛ばす（お祝い感と和風の融合）
+            const count = 200;
+            const defaults = {
+                origin: { y: 0.7 }
+            };
 
-            (function frame() {
-              confetti({
-                particleCount: 3,
-                angle: 60,
-                spread: 55,
-                origin: { x: 0 },
-                colors: ['#009688', '#80cbc4', '#ffffff']
-              });
-              confetti({
-                particleCount: 3,
-                angle: 120,
-                spread: 55,
-                origin: { x: 1 },
-                colors: ['#009688', '#80cbc4', '#ffffff']
-              });
+            function fire(particleRatio, opts) {
+                confetti(Object.assign({}, defaults, opts, {
+                    particleCount: Math.floor(count * particleRatio)
+                }));
+            }
 
-              if (Date.now() < end) {
-                requestAnimationFrame(frame);
-              }
-            }());
+            fire(0.25, {
+                spread: 26,
+                startVelocity: 55,
+                colors: ['#b08d2d', '#ffffff']
+            });
+            fire(0.2, {
+                spread: 60,
+                colors: ['#b08d2d', '#cc3333']
+            });
+            fire(0.35, {
+                spread: 100,
+                decay: 0.91,
+                scalar: 0.8,
+                colors: ['#b08d2d', '#ffffff', '#2a4d2a']
+            });
         };
     </script>
 </body>
